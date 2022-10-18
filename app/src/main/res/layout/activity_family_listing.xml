@@ -72,7 +72,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
                 <!-- hh11  Input   -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVhh11"
@@ -136,8 +135,9 @@
                                 android:text="@string/Q_hh12" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="2"
                                 android:text="@string/hh12" />
 
                             <com.edittextpicker.aliazaz.EditTextPicker
@@ -148,7 +148,7 @@
                                 android:hint="##"
                                 android:inputType="number"
                                 android:maxLength="2"
-                                android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck()}"
+                                android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck() + listings.setHh12a(``) + listings.setHh12b(``) + listings.setHh12c(``)}"
                                 android:text="@={listings.hh12}"
                                 app:maxValue="99"
                                 app:minValue="1"
@@ -156,6 +156,142 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
+                <!-- hh12a  Input   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVhh12a"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_hh12a" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="@string/hh12a" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh12a"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck() + listings.setHh12b(``) + listings.setHh12c(``)}"
+                                android:text="@={listings.hh12a}"
+                                app:maxValue="99"
+                                app:minValue="1"
+                                app:type="range" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- hh12b  Input   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVhh12b"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_hh12b" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="@string/hh12b" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh12b"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck() + listings.setHh12c(``)}"
+                                android:text="@={listings.hh12b}"
+                                app:maxValue="99"
+                                app:minValue="1"
+                                app:type="range" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- hh12c  Input   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVhh12c"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_hh12c" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="@string/hh12c" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh12c"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck()}"
+                                android:text="@={listings.hh12c}"
+                                app:maxValue="99"
+                                app:minValue="1"
+                                app:type="range" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
                 <!-- hh13  Radio   -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVhh13"
@@ -212,7 +348,6 @@
                         </RadioGroup>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
 
                 <!-- hh13a  Input-Numeric   -->
                 <androidx.cardview.widget.CardView
@@ -364,7 +499,6 @@
                             app:type="range" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
 
                 <!-- hh15  Radio   -->
                 <androidx.cardview.widget.CardView

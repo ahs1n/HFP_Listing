@@ -71,6 +71,9 @@ public class Listings extends BaseObservable {
     private String hh10 = StringUtils.EMPTY;
     private String hh11 = StringUtils.EMPTY;
     private String hh12 = StringUtils.EMPTY;
+    private String hh12a = StringUtils.EMPTY;
+    private String hh12b = StringUtils.EMPTY;
+    private String hh12c = StringUtils.EMPTY;
     private String hh13 = StringUtils.EMPTY;
     private String hh13a = StringUtils.EMPTY;
     private String hh14 = StringUtils.EMPTY;
@@ -278,6 +281,36 @@ public class Listings extends BaseObservable {
     public void setHh12(String hh12) {
         this.hh12 = hh12;
         notifyPropertyChanged(BR.hh12);
+    }
+
+    @Bindable
+    public String getHh12a() {
+        return hh12a;
+    }
+
+    public void setHh12a(String hh12a) {
+        this.hh12a = hh12a;
+        notifyPropertyChanged(BR.hh12a);
+    }
+
+    @Bindable
+    public String getHh12b() {
+        return hh12b;
+    }
+
+    public void setHh12b(String hh12b) {
+        this.hh12b = hh12b;
+        notifyPropertyChanged(BR.hh12b);
+    }
+
+    @Bindable
+    public String getHh12c() {
+        return hh12c;
+    }
+
+    public void setHh12c(String hh12c) {
+        this.hh12c = hh12c;
+        notifyPropertyChanged(BR.hh12c);
     }
 
     @Bindable
@@ -629,6 +662,9 @@ public class Listings extends BaseObservable {
             this.hh05 = json.getString("hh05");
             this.hh11 = json.getString("hh11");
             this.hh12 = json.getString("hh12");
+            this.hh12a = json.getString("hh12a");
+            this.hh12b = json.getString("hh12b");
+            this.hh12c = json.getString("hh12c");
             this.hh13 = json.getString("hh13");
             this.hh13a = json.getString("hh13a");
             this.hh14 = json.getString("hh14");
@@ -673,6 +709,9 @@ public class Listings extends BaseObservable {
         json.put("hh05", hh05)
                 .put("hh11", hh11)
                 .put("hh12", hh12)
+                .put("hh12a", hh12a)
+                .put("hh12b", hh12b)
+                .put("hh12c", hh12c)
                 .put("hh13", hh13)
                 .put("hh13a", hh13a)
                 .put("hh14", hh14)

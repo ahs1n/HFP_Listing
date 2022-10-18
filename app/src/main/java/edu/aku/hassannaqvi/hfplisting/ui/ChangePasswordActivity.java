@@ -1,5 +1,6 @@
 package edu.aku.hassannaqvi.hfplisting.ui;
 
+import static edu.aku.hassannaqvi.hfplisting.core.UserAuth.checkPassword;
 import static edu.aku.hassannaqvi.hfplisting.core.UserAuth.generatePassword;
 
 import android.os.Bundle;
@@ -23,12 +24,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import edu.aku.hassannaqvi.hfplisting.R;
+import edu.aku.hassannaqvi.hfplisting.core.CipherSecure;
 import edu.aku.hassannaqvi.hfplisting.core.MainApp;
-import edu.aku.hassannaqvi.hfplisting.core.UserAuth;
 import edu.aku.hassannaqvi.hfplisting.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hfplisting.databinding.ActivityChangePasswordBinding;
 import edu.aku.hassannaqvi.hfplisting.workers.UserWorker;
@@ -49,12 +57,25 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     public void onShowPasswordClick(View view) {
         //TODO implement
-        EditText p;
-        if (view.getId() == bi.showPassword1.getId()) {
+        EditText p = bi.passwordOld;
+        switch (view.getId()) {
+
+            case R.id.showPasswordOld:
+                p = bi.passwordOld;
+                break;
+            case R.id.showPassword1:
+                p = bi.password1;
+                break;
+            case R.id.showPassword2:
+                p = bi.password2;
+                break;
+
+        }
+        /*if (view.getId() == bi.showPassword1.getId()) {
             p = bi.password1;
         } else {
             p = bi.password2;
-        }
+        }*/
 
         if (p.getTransformationMethod() == null) {
             p.setTransformationMethod(new PasswordTransformationMethod());
@@ -186,6 +207,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         }
                     });
 
+            Log.d(TAG, "attemptReset: " + CipherSecure.encryptGCM(bi.password2.getText().toString()));
+
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             Toast.makeText(this, "NoSuchAlgorithmException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -193,14 +216,35 @@ public class ChangePasswordActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "InvalidKeySpecException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "InvalidKeyException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "InvalidAlgorithmParameterException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "NoSuchPaddingException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "BadPaddingException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "IllegalBlockSizeException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
 
     }
 
     private boolean formValidation() {
         // return Validator.emptyCheckingContainer(this, bi.GrpName);
-
-        String hashedPasswordOld = "";
+        /*String hashedPasswordOld = "";
         try {
             hashedPasswordOld = generatePassword(bi.passwordOld.getText().toString(), null);
         } catch (NoSuchAlgorithmException e) {
@@ -215,6 +259,25 @@ public class ChangePasswordActivity extends AppCompatActivity {
             return false;
         } else {
             bi.passwordOld.setError(null);
+
+        }*/
+
+        try {
+            if (!checkPassword(bi.passwordOld.getText().toString(), MainApp.user.getPassword())) {
+                bi.passwordOld.setError("Old password do not match.");
+                Toast.makeText(this, "Old password do not match.", Toast.LENGTH_SHORT).show();
+                return false;
+            } else {
+                bi.passwordOld.setError(null);
+
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "NoSuchAlgorithmException(UserAuth.checkPassword): " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "InvalidKeySpecException(UserAuth.checkPassword): " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
 
@@ -244,15 +307,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         }
 
-        if (bi.password1.getText().toString().equals(MainApp.user.getNewUser())) {
-            //   bi.password1.setError("Passwords do not match.");
-            Toast.makeText(this, "Password cannot be same as username.", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            bi.password1.setError(null);
-
-        }
-
         return true;
     }
 
@@ -261,7 +315,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         // Check not same as previous
         try {
-            if (UserAuth.checkPassword(password, MainApp.user.getPassword())) {
+            if (checkPassword(password, MainApp.user.getPassword())) {
                 System.out.println("Password is same as previous.");
                 bi.password1.setError("Password must not be same as previous.");
                 isValid = false;
@@ -307,6 +361,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             bi.password1.setError("Username and Password cannot be same");
             isValid = false;
         }
+
         /*String specialChars = "(.*[@,#,$,%].*$)";
         if (!password.matches(specialChars ))
         {

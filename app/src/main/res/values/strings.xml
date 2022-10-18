@@ -146,6 +146,10 @@
     <string name="hh11">گھرانے کے سربراہ کا نام؟</string>
 
     <string name="hh12">بشمول بچوں کے گھر میں رہنے والے افراد کی تعداد</string>
+    <string name="hh12a">مردوں کی تعداد (بشمول بچوں کے)</string>
+    <string name="hh12b">خواتین کی تعداد (بشمول بچیوں کے)</string>
+    <string name="hh12c">گھر میں شادی شدہ خواتیں کی تعداد کتنی ہے؟</string>
+
     <string name="hh13">کیا اس گھر میں پانچ سال سے کم عمر کے بچے ہیں؟</string>
     <string name="hh1301">ہاں </string>
     <string name="hh1302">نہیں</string>
@@ -179,6 +183,9 @@
     <string name='Q_hh14a'>hh14a</string>
     <string name='Q_hh15'>hh15</string>
     <string name='Q_hh12'>hh12</string>
+    <string name='Q_hh12a'>hh12a</string>
+    <string name='Q_hh12b'>hh12b</string>
+    <string name='Q_hh12c'>hh12c</string>
     <string name='Q_hh13'>hh13</string>
     <string name='Q_hh13a'>hh13a</string>
     <string name='Q_hh16'>hh16</string>

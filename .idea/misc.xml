@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android Office Work/HFP_Listing/app/src/main/res/layout/activity_change_password.xml" value="0.5578125" />
+        <entry key="..\:/Android Office Work/HFP_Listing/app/src/main/res/layout/activity_family_listing.xml" value="0.534375" />
         <entry key="..\:/Android Office Work/HFP_Listing/app/src/main/res/layout/activity_login.xml" value="0.5578125" />
         <entry key="..\:/Android Office Work/HFP_Listing/app/src/main/res/layout/activity_mwra_listing.xml" value="0.371875" />
         <entry key="..\:/Android Office Work/HFP_Listing/app/src/main/res/layout/activity_section_a.xml" value="0.5578125" />
+        <entry key="..\:/Android Office Work/HFP_Listing/app/src/main/res/layout/activity_section_b.xml" value="0.534375" />
       </map>
     </option>
   </component>

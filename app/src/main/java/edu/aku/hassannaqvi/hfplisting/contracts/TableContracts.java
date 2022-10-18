@@ -55,7 +55,7 @@ public class TableContracts {
 
     public static abstract class UsersTable implements BaseColumns {
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String TABLE_NAME = "AppUser";
+        public static final String TABLE_NAME = "Users";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_PASSWORD = "passwordEnc";

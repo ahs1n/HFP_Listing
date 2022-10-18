@@ -290,6 +290,9 @@ public class Listings extends BaseObservable {
 
     public void setHh12a(String hh12a) {
         this.hh12a = hh12a;
+        if (hh12a.length() > 0 && this.hh12b.length() > 0)
+            setHh12(String.valueOf(Integer.parseInt(hh12a) + Integer.parseInt(this.hh12b)));
+        else setHh12("");
         notifyPropertyChanged(BR.hh12a);
     }
 
@@ -300,6 +303,9 @@ public class Listings extends BaseObservable {
 
     public void setHh12b(String hh12b) {
         this.hh12b = hh12b;
+        if (hh12b.length() > 0 && this.hh12a.length() > 0)
+            setHh12(String.valueOf(Integer.parseInt(hh12b) + Integer.parseInt(this.hh12a)));
+        else setHh12("");
         notifyPropertyChanged(BR.hh12b);
     }
 

@@ -178,7 +178,7 @@ public class FamilyListingActivity extends AppCompatActivity {
         if (!Validator.emptyCheckingContainer(this, bi.GrpName)) return false;
 
         if (!bi.hh12.getText().toString().equals("")) {
-            if (Integer.parseInt(bi.hh12a.getText().toString()) > Integer.parseInt(bi.hh12.getText().toString())) {
+          /*  if (Integer.parseInt(bi.hh12a.getText().toString()) > Integer.parseInt(bi.hh12.getText().toString())) {
                 Validator.emptyCustomTextBox(this, bi.hh12a, "Total male cannot be more than Total Members");
                 return false;
             }
@@ -191,7 +191,7 @@ public class FamilyListingActivity extends AppCompatActivity {
             if (Integer.parseInt(bi.hh12c.getText().toString()) > Integer.parseInt(bi.hh12.getText().toString())) {
                 Validator.emptyCustomTextBox(this, bi.hh12c, "Total maried women cannot be more than Total Members");
                 return false;
-            }
+            }*/
 
             if (Integer.parseInt(bi.hh12c.getText().toString()) > Integer.parseInt(bi.hh12b.getText().toString())) {
                 Validator.emptyCustomTextBox(this, bi.hh12c, "Total maried women cannot be more than Total Females");

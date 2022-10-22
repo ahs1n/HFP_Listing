@@ -72,7 +72,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/bottom"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="gone">
 
                                 <TextView
                                     style="@style/quesNum"
@@ -124,14 +125,22 @@
                                     android:layout_weight="1"
                                     android:text="@string/hh01a" />
 
-                                <TextView
+                                <androidx.appcompat.widget.AppCompatSpinner
                                     android:id="@+id/hh01a"
-                                    style="@style/textInput"
+                                    style="@style/spinner"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
-                                    android:fontFamily="@font/roboto"
                                     android:hint="@string/hh01a" />
+
+                                <!--                                <TextView-->
+                                <!--                                    android:id="@+id/hh01a"-->
+                                <!--                                    style="@style/textInput"-->
+                                <!--                                    android:layout_width="0dp"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    android:layout_weight="2"-->
+                                <!--                                    android:fontFamily="@font/roboto"-->
+                                <!--                                    android:hint="@string/hh01a" />-->
                             </LinearLayout>
 
 
@@ -147,14 +156,22 @@
                                     android:layout_weight="1"
                                     android:text="@string/hh01b" />
 
-                                <TextView
+                                <androidx.appcompat.widget.AppCompatSpinner
                                     android:id="@+id/hh01b"
-                                    style="@style/textInput"
+                                    style="@style/spinner"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
-                                    android:fontFamily="@font/roboto"
                                     android:hint="@string/hh01b" />
+
+                                <!--                                <TextView-->
+                                <!--                                    android:id="@+id/hh01b"-->
+                                <!--                                    style="@style/textInput"-->
+                                <!--                                    android:layout_width="0dp"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    android:layout_weight="2"-->
+                                <!--                                    android:fontFamily="@font/roboto"-->
+                                <!--                                    android:hint="@string/hh01b" />-->
                             </LinearLayout>
 
 
@@ -170,14 +187,22 @@
                                     android:layout_weight="1"
                                     android:text="@string/hh01c" />
 
-                                <TextView
+                                <androidx.appcompat.widget.AppCompatSpinner
                                     android:id="@+id/hh01c"
-                                    style="@style/textInput"
+                                    style="@style/spinner"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
-                                    android:fontFamily="@font/roboto"
                                     android:hint="@string/hh01c" />
+
+                                <!--                                <TextView-->
+                                <!--                                    android:id="@+id/hh01c"-->
+                                <!--                                    style="@style/textInput"-->
+                                <!--                                    android:layout_width="0dp"-->
+                                <!--                                    android:layout_height="wrap_content"-->
+                                <!--                                    android:layout_weight="2"-->
+                                <!--                                    android:fontFamily="@font/roboto"-->
+                                <!--                                    android:hint="@string/hh01c" />-->
                             </LinearLayout>
 
                             <TextView
@@ -201,8 +226,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVhh02"
                         style="@style/cardView"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -250,8 +274,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVhh03"
                         style="@style/cardView"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"

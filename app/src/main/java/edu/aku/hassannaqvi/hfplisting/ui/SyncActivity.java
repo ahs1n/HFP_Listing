@@ -55,6 +55,7 @@ import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.UsersTable;
 import edu.aku.hassannaqvi.hfplisting.core.MainApp;
 import edu.aku.hassannaqvi.hfplisting.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hfplisting.databinding.ActivitySyncBinding;
+import edu.aku.hassannaqvi.hfplisting.models.HealthFacilities;
 import edu.aku.hassannaqvi.hfplisting.models.SyncModel;
 import edu.aku.hassannaqvi.hfplisting.workers.DataDownWorkerALL;
 import edu.aku.hassannaqvi.hfplisting.workers.DataUpWorkerALL;
@@ -201,6 +202,10 @@ public class SyncActivity extends AppCompatActivity {
                     select = " * ";
                     filter = " (colflag != '1' or colflag is null) AND dist_id = '" + MainApp.user.getDist_id() + "' ";
                     downloadTables.add(new SyncModel(ClusterTable.TABLE_NAME, select, filter));
+
+                    select = " * ";
+                    filter = " (colflag != '1' or colflag is null) AND distcode = '" + MainApp.user.getDist_id() + "' ";
+                    downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME, select, filter));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);

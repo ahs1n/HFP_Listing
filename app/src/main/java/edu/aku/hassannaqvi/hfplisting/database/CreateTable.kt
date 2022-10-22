@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.hfplisting.database
 
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.*
 import edu.aku.hassannaqvi.hfplisting.core.MainApp.PROJECT_NAME
+import edu.aku.hassannaqvi.hfplisting.models.HealthFacilities
 
 object CreateTable {
 
@@ -87,9 +88,20 @@ object CreateTable {
             + ClusterTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + ClusterTable.COLUMN_GEOAREA + " TEXT,"
             + ClusterTable.COLUMN_DIST_ID + " TEXT,"
-            + ClusterTable.COLUMN_EB_CODE + " TEXT"
+            + ClusterTable.COLUMN_EB_CODE + " TEXT,"
+            + ClusterTable.COLUMN_DIST_NAME + " TEXT,"
+            + ClusterTable.COLUMN_AREA + " TEXT,"
+            + ClusterTable.COLUMN_CITY + " TEXT"
             + " );"
             )
+
+    const val SQL_CREATE_FACILITIES =
+        ("CREATE TABLE " + HealthFacilities.TableHealthFacilities.TABLE_NAME + "("
+                + HealthFacilities.TableHealthFacilities.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_DISTRICT_CODE + " TEXT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_NAME + " TEXT,"
+                + HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_CODE + " TEXT"
+                + " );")
 
     const val SQL_CREATE_ENTRYLOGS = ("CREATE TABLE "
             + EntryLogTable.TABLE_NAME + "("

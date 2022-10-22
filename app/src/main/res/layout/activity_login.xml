@@ -107,6 +107,7 @@
 
                                 <edu.aku.hassannaqvi.hfplisting.core.NoMenuEditText
                                     android:id="@+id/username"
+                                    android:text="user0003"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center_horizontal"
@@ -139,6 +140,7 @@
                                     <edu.aku.hassannaqvi.hfplisting.core.NoMenuEditText
                                         android:id="@+id/password"
                                         android:layout_width="0dp"
+                                        android:text="User0003"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center_horizontal"
                                         android:layout_weight="8"

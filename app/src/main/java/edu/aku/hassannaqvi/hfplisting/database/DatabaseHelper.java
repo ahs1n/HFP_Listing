@@ -9,6 +9,7 @@ import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_ALTER_LIST
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_ALTER_LISTING_GPS_LNG;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_CLUSTERS;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_ENTRYLOGS;
+import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_FACILITIES;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_LISTINGS;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_USERS;
 
@@ -30,6 +31,7 @@ import org.json.JSONObject;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +44,7 @@ import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.UsersTable;
 import edu.aku.hassannaqvi.hfplisting.core.MainApp;
 import edu.aku.hassannaqvi.hfplisting.models.Cluster;
 import edu.aku.hassannaqvi.hfplisting.models.EntryLog;
+import edu.aku.hassannaqvi.hfplisting.models.HealthFacilities;
 import edu.aku.hassannaqvi.hfplisting.models.Listings;
 import edu.aku.hassannaqvi.hfplisting.models.Mwra;
 import edu.aku.hassannaqvi.hfplisting.models.Users;
@@ -73,6 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_CLUSTERS);
+        db.execSQL(SQL_CREATE_FACILITIES);
         db.execSQL(SQL_CREATE_LISTINGS);
         // db.execSQL(SQL_CREATE_MWRA);
         db.execSQL(SQL_CREATE_ENTRYLOGS);
@@ -541,11 +545,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(ClusterTable.COLUMN_GEOAREA, cluster.getGeoarea());
             values.put(ClusterTable.COLUMN_DIST_ID, cluster.getDistId());
             values.put(ClusterTable.COLUMN_EB_CODE, cluster.getEbcode());
+            values.put(ClusterTable.COLUMN_DIST_NAME, cluster.getDistName());
+            values.put(ClusterTable.COLUMN_AREA, cluster.getArea());
+            values.put(ClusterTable.COLUMN_CITY, cluster.getCity());
             long rowID = db.insert(ClusterTable.TABLE_NAME, null, values);
             if (rowID != -1) insertCount++;
         }
 
 
+        return insertCount;
+    }
+
+    // Sync Facilities
+    public int synchf_list(JSONArray healthfacilities) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.delete(HealthFacilities.TableHealthFacilities.TABLE_NAME, null, null);
+        int insertCount = 0;
+
+        for (int i = 0; i < healthfacilities.length(); i++) {
+            JSONObject json = healthfacilities.getJSONObject(i);
+            HealthFacilities facilities = new HealthFacilities();
+            facilities.sync(json);
+            ContentValues values = new ContentValues();
+
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_DISTRICT_CODE, facilities.getDistrictCode());
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_NAME, facilities.getFacilityName());
+            values.put(HealthFacilities.TableHealthFacilities.COLUMN_FACILITY_CODE, facilities.getFacilityCode());
+
+            long rowID = db.insert(HealthFacilities.TableHealthFacilities.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
         return insertCount;
     }
 
@@ -938,5 +967,95 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values,
                 selection,
                 selectionArgs);
+    }
+
+
+    public Collection<Cluster> getAllClusters(String distCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
+        String[] whereArgs = {distCode};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = ClusterTable.COLUMN_ID + " ASC";
+
+        List<Cluster> cluster = new ArrayList<>();
+
+        c = db.query(
+                ClusterTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            cluster.add(new Cluster().hydrate(c));
+        }
+        return cluster;
+    }
+
+
+    public Collection<Cluster> getCityByCluster(String distCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
+        String[] whereArgs = {distCode};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = ClusterTable.COLUMN_ID + " ASC";
+
+        List<Cluster> cluster = new ArrayList<>();
+
+        c = db.query(
+                ClusterTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            cluster.add(new Cluster().hydrate(c));
+        }
+        return cluster;
+    }
+
+
+    public Collection<Cluster> getAreaByCity(String distCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
+        String[] whereArgs = {distCode};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = ClusterTable.COLUMN_ID + " ASC";
+
+        List<Cluster> cluster = new ArrayList<>();
+
+        c = db.query(
+                ClusterTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            cluster.add(new Cluster().hydrate(c));
+        }
+        return cluster;
     }
 }

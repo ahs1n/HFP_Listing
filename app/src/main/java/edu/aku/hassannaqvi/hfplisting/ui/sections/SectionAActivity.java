@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -36,7 +38,8 @@ public class SectionAActivity extends AppCompatActivity {
     ActivitySectionABinding bi;
     String st = "";
     private DatabaseHelper db;
-    private ArrayList<String> ebCode, districtNames, tehsilNames, cityNames, headHH;
+    private ArrayList<String> ebCode, districtNames, tehsilNames, headHH;
+    private ArrayList<String> distNames, distCodes, areaNames, cityNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,9 @@ public class SectionAActivity extends AppCompatActivity {
         bi.hh01.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                bi.hh01a.setText(null);
+                /*bi.hh01a.setText(null);
                 bi.hh01b.setText(null);
-                bi.hh01c.setText(null);
+                bi.hh01c.setText(null);*/
                 bi.hh02.setChecked(false);
                 bi.hh03.clearCheck();
 
@@ -78,12 +81,12 @@ public class SectionAActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                bi.hh01a.setText(null);
+                /*bi.hh01a.setText(null);
                 bi.hh01b.setText(null);
                 bi.hh01c.setText(null);
                 bi.hh01a.setError(null);
                 bi.hh01b.setError(null);
-                bi.hh01c.setError(null);
+                bi.hh01c.setError(null);*/
                 bi.hh02.setChecked(false);
                 bi.hh03.clearCheck();
                 bi.openForm.setEnabled(false);
@@ -98,7 +101,7 @@ public class SectionAActivity extends AppCompatActivity {
         bi.hh02.setOnCheckedChangeListener((compoundButton, b) -> {
             if (!selectedCluster.getEbcode().equals("") && b) {
                 bi.openForm.setEnabled(true);
-                bi.openForm.setVisibility(View.VISIBLE);
+//                bi.openForm.setVisibility(View.VISIBLE);
 
             } else {
                 bi.openForm.setEnabled(false);
@@ -113,6 +116,105 @@ public class SectionAActivity extends AppCompatActivity {
     }
 
     private void populateSpinner() {
+
+        Collection<Cluster> clusters = db.getAllClusters(MainApp.user.getDist_id());
+        distNames = new ArrayList<>();
+        distCodes = new ArrayList<>();
+        distNames.add("...");
+        distCodes.add("...");
+
+        for (Cluster cluster : clusters) {
+            distNames.add(cluster.getDistName());
+            distCodes.add(cluster.getDistId());
+        }
+
+        if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu") || MainApp.user.getUserName().contains("user")) {
+            distNames.add("Test Dist 9");
+            distNames.add("Test Dist 8");
+            distNames.add("Test Dist 7");
+            distCodes.add("9");
+            distCodes.add("8");
+            distCodes.add("7");
+        }
+
+        // Apply the adapter to the spinner
+        bi.hh01a.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, distNames));
+
+
+        bi.hh01a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                Collection<Cluster> clusters = db.getCityByCluster(MainApp.user.getDist_id());
+                cityNames = new ArrayList<>();
+                cityNames.add("...");
+
+                for (Cluster cluster : clusters) {
+                    cityNames.add(cluster.getCity());
+                }
+                if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu") || MainApp.user.getUserName().contains("user")) {
+
+                    cityNames.add("Test City 1 " + distNames.get(position));
+                    cityNames.add("Test City 2 " + distNames.get(position));
+                    cityNames.add("Test City 3 " + distNames.get(position));
+                }
+
+                // Apply the adapter to the spinner
+                bi.hh01b.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, cityNames));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+        });
+
+
+        bi.hh01b.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) return;
+                Collection<Cluster> clusters = db.getAreaByCity(MainApp.user.getDist_id());
+                areaNames = new ArrayList<>();
+                areaNames.add("...");
+
+                for (Cluster cluster : clusters) {
+                    areaNames.add(cluster.getArea());
+                }
+                if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu") || MainApp.user.getUserName().contains("user")) {
+
+                    areaNames.add("Test Area 1 " + cityNames.get(position));
+                    areaNames.add("Test Area 2 " + cityNames.get(position));
+                    areaNames.add("Test Area 3 " + cityNames.get(position));
+                }
+
+                // Apply the adapter to the spinner
+                bi.hh01c.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, areaNames));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+        });
+
+        bi.hh01c.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bi.openForm.setEnabled(true);
+                bi.openForm.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+        });
+
+
         List<Cluster> clustersList = db.getClusters();
         ebCode = new ArrayList<>();
         districtNames = new ArrayList<>();
@@ -128,76 +230,7 @@ public class SectionAActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, ebCode);
-
-        //  bi.hh01.setAdapter(adapter);
-
-     /*   bi.hh03.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-               if(bi.hh031.isChecked()){
-
-               }
-
-            }
-        });*/
-/*
-        bi.hh01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                int position = ebCode.indexOf(bi.hh01.getText().toString());
-                bi.hh01a.setText(districtNames.get(position));
-                bi.hh01b.setText(tehsilNames.get(position));
-
-                ArrayList<String> households = new ArrayList<String>();
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(SectionAActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, households);
-
-                bi.hh01.setAdapter(adapter);
-
-            }
-        });*/
-
-
     }
-
-    /*private boolean insertRecord() {
-        selectedCluster = bi.hh01.getText().toString();
-        MainApp.maxStructure = Integer.parseInt(sharedPref.getString(selectedCluster, "0"));
-
-
-        return true;
-       *//* long rowId = 0;
-
-        try {
-            rowId = db.addCR(listings);
-
-            if (rowId > 0) {
-                long updCount = 0;
-
-                listings.setId(String.valueOf(rowId));
-                listings.setUid(listings.getDeviceId() + listings.getId());
-
-                updCount = db.updateCrColumn(TableContracts.ListingsTable.COLUMN_UID, listings.getUid());
-
-                if (updCount > 0) {
-                    return true;
-                }
-
-            } else {
-                Toast.makeText(this, "Updating Database… ERROR!", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "JSONException(CR):" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-        return false;*//*
-    }*/
-
 
     public void btnContinue(View view) {
         if (!formValidation()) return;
@@ -227,9 +260,9 @@ public class SectionAActivity extends AppCompatActivity {
     }
 
     public void searchEB(View view) {
-        bi.hh01a.setText("");
+        /*bi.hh01a.setText("");
         bi.hh01b.setText("");
-        bi.hh01c.setText("");
+        bi.hh01c.setText("");*/
         bi.hh02.setChecked(false);
         bi.hh03.clearCheck();
         bi.openForm.setEnabled(false);
@@ -249,20 +282,20 @@ public class SectionAActivity extends AppCompatActivity {
                 MainApp.maxStructure = Integer.parseInt(MainApp.clusterInfo[0]);
 
 
-                bi.hh01a.setError(null);
+                /*bi.hh01a.setError(null);
                 bi.hh01b.setError(null);
-                bi.hh01c.setError(null);
+                bi.hh01c.setError(null);*/
 
                 String[] geoArea = selectedCluster.getGeoarea().split("\\|");
-                bi.hh01a.setText(geoArea[1]);
+                /*bi.hh01a.setText(geoArea[1]);
                 bi.hh01b.setText(geoArea[2]);
-                bi.hh01c.setText(geoArea[3]);
+                bi.hh01c.setText(geoArea[3]);*/
 
                 bi.fldGrpCVhh02.setVisibility(View.VISIBLE);
 
                 if (bi.hh02.isChecked())
                     bi.openForm.setEnabled(true);
-                bi.openForm.setVisibility(View.VISIBLE);
+//                bi.openForm.setVisibility(View.VISIBLE);
 
 
                 if (!MainApp.clusterInfo[0].equals("0")) {
@@ -294,9 +327,9 @@ public class SectionAActivity extends AppCompatActivity {
             MainApp.maxStructure = 0;
             MainApp.selectedTab = "";
             bi.ebMsg.setText(null);
-            bi.hh01a.setError("Not Found!");
+            /*bi.hh01a.setError("Not Found!");
             bi.hh01b.setError("Not Found!");
-            bi.hh01c.setText("Not Found!");
+            bi.hh01c.setText("Not Found!");*/
 
         }
 

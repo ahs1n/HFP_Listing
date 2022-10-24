@@ -4,6 +4,7 @@ import static edu.aku.hassannaqvi.hfplisting.core.MainApp.editor;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.maxStructure;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.selectedCluster;
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.sharedPref;
 
 import android.content.Context;
 import android.content.Intent;
@@ -51,7 +52,9 @@ public class SectionBActivity extends AppCompatActivity {
         setSupportActionBar(bi.toolbar);
         db = MainApp.appInfo.dbHelper;
 
-        maxStructure++;
+//        maxStructure++;
+        MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
+        maxStructure = Integer.parseInt(MainApp.clusterInfo[0]) + 1;
         MainApp.hhid = 0;
 
         listings.setHh04(String.valueOf(maxStructure));

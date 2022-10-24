@@ -39,7 +39,7 @@ public class SectionAActivity extends AppCompatActivity {
     String st = "";
     private DatabaseHelper db;
     private ArrayList<String> ebCode, districtNames, tehsilNames, headHH;
-    private ArrayList<String> distNames, distCodes, areaNames, cityNames;
+    private ArrayList<String> distNames, distCodes, areaNames, facilityNames, facilityCodes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,24 +145,35 @@ public class SectionAActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                bi.openForm.setVisibility(View.GONE);
+                bi.hh01b.setAdapter(null);
+                bi.hh01c.setAdapter(null);
                 if (position == 0) return;
-                Collection<Cluster> clusters = db.getCityByCluster(MainApp.user.getDist_id());
-                cityNames = new ArrayList<>();
-                cityNames.add("...");
+                Collection<Cluster> clusters = db.getHealthFacilityByCluster(MainApp.user.getDist_id());
+                facilityNames = new ArrayList<>();
+                facilityCodes = new ArrayList<>();
+                facilityNames.add("...");
+                facilityCodes.add("...");
+
+                MainApp.selectedDistrictName = (distNames.get(bi.hh01a.getSelectedItemPosition()));
+                MainApp.selectedDistrictCode = (distCodes.get(bi.hh01a.getSelectedItemPosition()));
 
                 for (Cluster cluster : clusters) {
-                    cityNames.add(cluster.getCity());
+                    facilityNames.add(cluster.getHf_name());
+                    facilityCodes.add(cluster.getHf_code());
                 }
                 if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu") || MainApp.user.getUserName().contains("user")) {
 
-                    cityNames.add("Test City 1 " + distNames.get(position));
-                    cityNames.add("Test City 2 " + distNames.get(position));
-                    cityNames.add("Test City 3 " + distNames.get(position));
+                    facilityNames.add("Test Facility 1 " + distNames.get(position));
+                    facilityNames.add("Test Facility 2 " + distNames.get(position));
+                    facilityNames.add("Test Facility 3 " + distNames.get(position));
+                    facilityCodes.add(distCodes.get(position) + "001");
+                    facilityCodes.add(distCodes.get(position) + "002");
+                    facilityCodes.add(distCodes.get(position) + "003");
                 }
 
                 // Apply the adapter to the spinner
-                bi.hh01b.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, cityNames));
-
+                bi.hh01b.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, facilityNames));
             }
 
             @Override
@@ -176,6 +187,8 @@ public class SectionAActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                bi.openForm.setVisibility(View.GONE);
+                bi.hh01c.setAdapter(null);
                 if (position == 0) return;
                 Collection<Cluster> clusters = db.getAreaByCity(MainApp.user.getDist_id());
                 areaNames = new ArrayList<>();
@@ -186,10 +199,15 @@ public class SectionAActivity extends AppCompatActivity {
                 }
                 if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu") || MainApp.user.getUserName().contains("user")) {
 
-                    areaNames.add("Test Area 1 " + cityNames.get(position));
-                    areaNames.add("Test Area 2 " + cityNames.get(position));
-                    areaNames.add("Test Area 3 " + cityNames.get(position));
+                    areaNames.add("Test Area 1 " + facilityNames.get(position));
+                    areaNames.add("Test Area 2 " + facilityNames.get(position));
+                    areaNames.add("Test Area 3 " + facilityNames.get(position));
                 }
+
+                MainApp.selectedFacilityName = (facilityNames.get(bi.hh01b.getSelectedItemPosition()));
+                MainApp.selectedFacilityCode = (facilityCodes.get(bi.hh01b.getSelectedItemPosition()));
+                listings.setCluster(MainApp.selectedFacilityCode);
+                listings.setHh01(MainApp.selectedFacilityCode);
 
                 // Apply the adapter to the spinner
                 bi.hh01c.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, areaNames));
@@ -204,8 +222,11 @@ public class SectionAActivity extends AppCompatActivity {
         bi.hh01c.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                bi.openForm.setEnabled(true);
-                bi.openForm.setVisibility(View.VISIBLE);
+                if (position != 0) {
+                    bi.openForm.setVisibility(View.VISIBLE);
+                    bi.openForm.setEnabled(true);
+                } else
+                    bi.openForm.setVisibility(View.GONE);
             }
 
             @Override
@@ -219,13 +240,13 @@ public class SectionAActivity extends AppCompatActivity {
         ebCode = new ArrayList<>();
         districtNames = new ArrayList<>();
         tehsilNames = new ArrayList<>();
-        cityNames = new ArrayList<>();
+        facilityNames = new ArrayList<>();
         for (Cluster c : clustersList) {
             ebCode.add(c.getEbcode());
             String[] geoArea = c.getGeoarea().split("\\|");
             districtNames.add(geoArea[1]);
             tehsilNames.add(geoArea[2]);
-            cityNames.add(geoArea[3]);
+            facilityNames.add(geoArea[3]);
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

@@ -54,7 +54,7 @@
                     android:gravity="center"
                     android:text="901010101-0234-001"
                     android:textColor="@color/white"
-                    android:textSize="56sp"
+                    android:textSize="46sp"
                     android:textStyle="bold" />
 
 

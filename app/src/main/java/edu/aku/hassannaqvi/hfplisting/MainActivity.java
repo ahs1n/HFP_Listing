@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem action_database = menu.findItem(R.id.action_database);
 
-//        action_database.setVisible(MainApp.admin);
+        action_database.setVisible(MainApp.admin);
         return true;
 
     }

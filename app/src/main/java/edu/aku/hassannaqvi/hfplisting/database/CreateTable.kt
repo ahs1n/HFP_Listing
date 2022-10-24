@@ -91,7 +91,8 @@ object CreateTable {
             + ClusterTable.COLUMN_EB_CODE + " TEXT,"
             + ClusterTable.COLUMN_DIST_NAME + " TEXT,"
             + ClusterTable.COLUMN_AREA + " TEXT,"
-            + ClusterTable.COLUMN_CITY + " TEXT"
+            + ClusterTable.COLUMN_HF_NAME + " TEXT,"
+            + ClusterTable.COLUMN_HF_CODE + " TEXT"
             + " );"
             )
 

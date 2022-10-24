@@ -16,7 +16,8 @@ class Cluster {
     var ebcode: String = _EMPTY_
     var distName: String = _EMPTY_
     var area: String = _EMPTY_
-    var city: String = _EMPTY_
+    var hf_name: String = _EMPTY_
+    var hf_code: String = _EMPTY_
 
 
     constructor() {
@@ -30,7 +31,8 @@ class Cluster {
         ebcode = jsonObject.getString(ClusterTable.COLUMN_EB_CODE)
         distName = jsonObject.getString(ClusterTable.COLUMN_DIST_NAME)
         area = jsonObject.getString(ClusterTable.COLUMN_AREA)
-        city = jsonObject.getString(ClusterTable.COLUMN_CITY)
+        hf_name = jsonObject.getString(ClusterTable.COLUMN_HF_NAME)
+        hf_code = jsonObject.getString(ClusterTable.COLUMN_HF_CODE)
 
 
         return this
@@ -44,7 +46,8 @@ class Cluster {
         ebcode = cursor.getString(cursor.getColumnIndexOrThrow(ClusterTable.COLUMN_EB_CODE))
         distName = cursor.getString(cursor.getColumnIndexOrThrow(ClusterTable.COLUMN_DIST_NAME))
         area = cursor.getString(cursor.getColumnIndexOrThrow(ClusterTable.COLUMN_AREA))
-        city = cursor.getString(cursor.getColumnIndexOrThrow(ClusterTable.COLUMN_CITY))
+        hf_name = cursor.getString(cursor.getColumnIndexOrThrow(ClusterTable.COLUMN_HF_NAME))
+        hf_code = cursor.getString(cursor.getColumnIndexOrThrow(ClusterTable.COLUMN_HF_CODE))
 
 
         return this

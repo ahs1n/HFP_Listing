@@ -88,7 +88,8 @@ public class TableContracts {
         public static final String COLUMN_EB_CODE = "ebcode";
         public static final String COLUMN_DIST_NAME = "district";
         public static final String COLUMN_AREA = "area";
-        public static final String COLUMN_CITY = "city";
+        public static final String COLUMN_HF_NAME = "hf_name";
+        public static final String COLUMN_HF_CODE = "hf_code";
 
     }
 

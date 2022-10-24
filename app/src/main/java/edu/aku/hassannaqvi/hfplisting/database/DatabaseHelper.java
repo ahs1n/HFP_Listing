@@ -547,7 +547,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(ClusterTable.COLUMN_EB_CODE, cluster.getEbcode());
             values.put(ClusterTable.COLUMN_DIST_NAME, cluster.getDistName());
             values.put(ClusterTable.COLUMN_AREA, cluster.getArea());
-            values.put(ClusterTable.COLUMN_CITY, cluster.getCity());
+            values.put(ClusterTable.COLUMN_HF_NAME, cluster.getHf_name());
+            values.put(ClusterTable.COLUMN_HF_CODE, cluster.getHf_code());
             long rowID = db.insert(ClusterTable.TABLE_NAME, null, values);
             if (rowID != -1) insertCount++;
         }
@@ -1000,7 +1001,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Collection<Cluster> getCityByCluster(String distCode) {
+    public Collection<Cluster> getHealthFacilityByCluster(String distCode) {
 
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;

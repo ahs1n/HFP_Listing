@@ -119,7 +119,7 @@ public class Listings extends BaseObservable {
 
     public void setHh01(String hh01) {
         this.hh01 = hh01;
-        setCluster(hh01);
+//        setCluster(hh01);
         setHh02("");
         setHh03("");
         notifyPropertyChanged(BR.hh01);

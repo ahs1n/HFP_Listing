@@ -63,6 +63,12 @@ public class MainApp extends Application {
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     public static int TRATS = 8;
     public static String IBAHC = "";
+
+    public static String selectedDistrictCode;
+    public static String selectedDistrictName;
+    public static String selectedFacilityCode;
+    public static String selectedFacilityName;
+
     //COUNTRIES
     public static int PAKISTAN = 1;
     public static int TAJIKISTAN = 3;

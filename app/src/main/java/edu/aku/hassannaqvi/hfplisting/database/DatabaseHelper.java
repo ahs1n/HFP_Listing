@@ -980,7 +980,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = null;
         String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
         String[] whereArgs = {distCode};
-        String groupBy = null;
+        String groupBy = ClusterTable.COLUMN_DIST_NAME;
         String having = null;
 
         String orderBy = ClusterTable.COLUMN_ID + " ASC";

@@ -187,7 +187,7 @@ public class SectionAActivity extends AppCompatActivity {
                 bi.openForm.setVisibility(View.GONE);
                 bi.hh01c.setAdapter(null);
                 if (position == 0) return;
-                Collection<Cluster> clusters = db.getAreaByHealthFacility(MainApp.user.getDist_id());
+                Collection<Cluster> clusters = db.getAreaByHealthFacility(facilityCodes.get(position));
                 areaNames = new ArrayList<>();
                 areaCodes = new ArrayList<>();
                 areaNames.add("...");

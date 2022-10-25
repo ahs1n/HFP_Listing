@@ -114,7 +114,7 @@ public class SectionAActivity extends AppCompatActivity {
 
     private void populateSpinner() {
 
-        Collection<Cluster> clusters = db.getAllClusters(MainApp.user.getDist_id());
+        Collection<Cluster> clusters = db.getAllDistricts(MainApp.user.getDist_id());
         distNames = new ArrayList<>();
         distCodes = new ArrayList<>();
         distNames.add("...");
@@ -187,7 +187,7 @@ public class SectionAActivity extends AppCompatActivity {
                 bi.openForm.setVisibility(View.GONE);
                 bi.hh01c.setAdapter(null);
                 if (position == 0) return;
-                Collection<Cluster> clusters = db.getAreaByCity(MainApp.user.getDist_id());
+                Collection<Cluster> clusters = db.getAreaByHealthFacility(MainApp.user.getDist_id());
                 areaNames = new ArrayList<>();
                 areaCodes = new ArrayList<>();
                 areaNames.add("...");

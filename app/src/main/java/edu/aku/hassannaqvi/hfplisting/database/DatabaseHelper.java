@@ -972,10 +972,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Collection<Cluster> getAllClusters(String distCode) {
+    public Collection<Cluster> getAllDistricts(String distCode) {
 
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
+        boolean distinct = true;
         String[] columns = null;
         String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
         String[] whereArgs = {distCode};
@@ -987,13 +988,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Cluster> cluster = new ArrayList<>();
 
         c = db.query(
+                distinct,
                 ClusterTable.TABLE_NAME,  // The table to query
-                columns,                   // The columns to return
-                whereClause,               // The columns for the WHERE clause
-                whereArgs,                 // The values for the WHERE clause
-                groupBy,                   // don't group the rows
-                having,                    // don't filter by row groups
-                orderBy                    // The sort order
+                columns,                  // The columns to return
+                whereClause,              // The columns for the WHERE clause
+                whereArgs,                // The values for the WHERE clause
+                groupBy,                  // don't group the rows
+                having,                   // don't filter by row groups
+                orderBy,                  // The sort order
+                "9999"
         );
         while (c.moveToNext()) {
             cluster.add(new Cluster().hydrate(c));
@@ -1032,13 +1035,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Collection<Cluster> getAreaByCity(String distCode) {
+    public Collection<Cluster> getAreaByHealthFacility(String hfCode) {
 
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = null;
-        String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
-        String[] whereArgs = {distCode};
+        String whereClause = ClusterTable.COLUMN_HF_CODE + " = ? ";
+        String[] whereArgs = {hfCode};
         String groupBy = null;
         String having = null;
 

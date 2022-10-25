@@ -56,6 +56,7 @@ public class SectionBActivity extends AppCompatActivity {
         MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
         maxStructure = Integer.parseInt(MainApp.clusterInfo[0]) + 1;
         MainApp.hhid = 0;
+        MainApp.hhid_char = "X";
 
         listings.setHh04(String.valueOf(maxStructure));
         listings.setHh07("");
@@ -82,7 +83,7 @@ public class SectionBActivity extends AppCompatActivity {
         }
 */
 
-        bi.hhid.setText("HFP-" + MainApp.selectedFacilityCode + "\n" + String.format("%04d", maxStructure));
+        bi.hhid.setText("HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%03d", maxStructure));
 //        bi.hhid.setText("HFP-" + String.format("%04d", maxStructure));
         Toast.makeText(this, "Staring Structure", Toast.LENGTH_SHORT).show();
 
@@ -156,6 +157,7 @@ public class SectionBActivity extends AppCompatActivity {
             maxStructure--;
             listings.setHh04("");
         }
+
         try {
             if (insertRecord()) {
                 finish();
@@ -166,9 +168,14 @@ public class SectionBActivity extends AppCompatActivity {
                 } else if (listings.getHh08().equals("1")) {
                     i = new Intent(this, FamilyListingActivity.class);
                     MainApp.hhid = 0;
+                    MainApp.hhid_char = "X";
 
                 } else {
                     i = new Intent(this, SectionBActivity.class);
+                }
+
+                if (listings.getHh09().equals("1")) {
+                    MainApp.hhid_char = "A";
                 }
 
                 startActivity(i);

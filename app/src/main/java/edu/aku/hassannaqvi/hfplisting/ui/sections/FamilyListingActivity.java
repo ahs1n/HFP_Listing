@@ -44,7 +44,7 @@ public class FamilyListingActivity extends AppCompatActivity {
 
         MainApp.hhid++;
         MainApp.mwraCount = 0;
-        listings.setHh05(String.valueOf(MainApp.hhid));
+        listings.setHh05(String.valueOf(MainApp.hhid_char));
         listings.setHh11("");
         listings.setHh12("");
         listings.setHh12a("");
@@ -57,12 +57,12 @@ public class FamilyListingActivity extends AppCompatActivity {
         listings.setHh15("");
         bi.btnEnd.setVisibility(MainApp.hhid == 1 ? View.GONE : View.VISIBLE);
 
-        if (MainApp.hhid >= Integer.parseInt(MainApp.listings.getHh10())) {
+        /*if (MainApp.hhid >= Integer.parseInt(MainApp.listings.getHh10())) {
             bi.fldGrpCVhh15.setVisibility(View.VISIBLE);
-        }
+        }*/
 
 //        bi.hhid.setText("HFP-" + MainApp.listings.getHh01() + "\n" + MainApp.selectedTab + "-" + String.format("%04d", MainApp.maxStructure) + "-" + String.format("%03d", MainApp.hhid));
-        bi.hhid.setText("HFP-" + MainApp.selectedFacilityCode + "\n" + String.format("%04d", MainApp.maxStructure) + "-" + String.format("%03d", MainApp.hhid));
+        bi.hhid.setText("HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%03d", MainApp.maxStructure) + "-" + (MainApp.hhid_char));
         Toast.makeText(this, "Staring Household", Toast.LENGTH_SHORT).show();
 
         bi.hh1301.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -146,6 +146,7 @@ public class FamilyListingActivity extends AppCompatActivity {
             if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
                 //   Toast.makeText(this, "Staring Family", Toast.LENGTH_SHORT).show();
 
+                MainApp.hhid_char = String.valueOf((char) (MainApp.hhid_char.charAt(0) + 1));
                 startActivity(new Intent(this, FamilyListingActivity.class));
 
             } else {

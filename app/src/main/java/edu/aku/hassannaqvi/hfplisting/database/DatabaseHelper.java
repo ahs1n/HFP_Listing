@@ -544,6 +544,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             values.put(ClusterTable.COLUMN_GEOAREA, cluster.getGeoarea());
             values.put(ClusterTable.COLUMN_DIST_ID, cluster.getDistId());
+            values.put(ClusterTable.COLUMN_AREA_CODE, cluster.getArea_code());
             values.put(ClusterTable.COLUMN_EB_CODE, cluster.getEbcode());
             values.put(ClusterTable.COLUMN_DIST_NAME, cluster.getDistName());
             values.put(ClusterTable.COLUMN_AREA, cluster.getArea());

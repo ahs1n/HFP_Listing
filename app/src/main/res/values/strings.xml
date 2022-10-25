@@ -113,9 +113,9 @@
     <string name="hh03">کیا یہ پہلا ٹیبلیٹ ہے جو اس پی ایس یو کی لائن لسٹنگ کے لئے استعمال ہو رہا ہے؟</string>
     <string name="hh031">ہاں</string>
     <string name="hh032">نہیں</string>
-    <string name="hh01a">ڈسٹرکٹ کوڈ</string>
-    <string name="hh01b">ٹاؤن/تعلقہ کوڈ</string>
-    <string name="hh01c"> علاقہ/گاؤں کا کوڈ  </string>
+    <string name="hh01a">ڈسٹرکٹ کوڈ / نام</string>
+    <string name="hh01b">مرکز صحت کا کوڈ / نام</string>
+    <string name="hh01c"> علاقہ/گاؤں کا کوڈ / نام</string>
     <string name="hh07"> تعمیراتی ساخت </string>
     <string name="hh0701"> رہائشی</string>
     <string name="hh0702">گندم کے آٹے کی چکی (رسمی) </string>

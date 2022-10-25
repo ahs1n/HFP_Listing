@@ -68,6 +68,8 @@ public class MainApp extends Application {
     public static String selectedDistrictName;
     public static String selectedFacilityCode;
     public static String selectedFacilityName;
+    public static String selectedAreaCode;
+    public static String selectedAreaName;
 
     //COUNTRIES
     public static int PAKISTAN = 1;
@@ -105,7 +107,9 @@ public class MainApp extends Application {
     public static int pregCountComplete = 0;
     public static List<String> subjectNames;
     public static Cluster selectedCluster;
+    public static Cluster cluster;
     public static int maxStructure;
+    public static String hhid_char;
     public static int hhid;
     public static int HHCount = 0;
     public static String[] clusterInfo;

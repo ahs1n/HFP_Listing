@@ -88,6 +88,7 @@ object CreateTable {
             + ClusterTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + ClusterTable.COLUMN_GEOAREA + " TEXT,"
             + ClusterTable.COLUMN_DIST_ID + " TEXT,"
+            + ClusterTable.COLUMN_AREA_CODE + " TEXT,"
             + ClusterTable.COLUMN_EB_CODE + " TEXT,"
             + ClusterTable.COLUMN_DIST_NAME + " TEXT,"
             + ClusterTable.COLUMN_AREA + " TEXT,"

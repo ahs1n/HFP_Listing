@@ -7,8 +7,6 @@ import static edu.aku.hassannaqvi.hfplisting.core.MainApp.sharedPref;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.hfplisting.MainActivity;
@@ -39,7 +36,7 @@ public class SectionAActivity extends AppCompatActivity {
     String st = "";
     private DatabaseHelper db;
     private ArrayList<String> ebCode, districtNames, tehsilNames, headHH;
-    private ArrayList<String> distNames, distCodes, areaNames, facilityNames, facilityCodes;
+    private ArrayList<String> distNames, distCodes, areaNames, areaCodes, facilityNames, facilityCodes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +53,12 @@ public class SectionAActivity extends AppCompatActivity {
 
         populateSpinner();
 
-        bi.hh01.addTextChangedListener(new TextWatcher() {
+        /*bi.hh01.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                /*bi.hh01a.setText(null);
+                *//*bi.hh01a.setText(null);
                 bi.hh01b.setText(null);
-                bi.hh01c.setText(null);*/
+                bi.hh01c.setText(null);*//*
                 bi.hh02.setChecked(false);
                 bi.hh03.clearCheck();
 
@@ -81,12 +78,12 @@ public class SectionAActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                /*bi.hh01a.setText(null);
+                *//*bi.hh01a.setText(null);
                 bi.hh01b.setText(null);
                 bi.hh01c.setText(null);
                 bi.hh01a.setError(null);
                 bi.hh01b.setError(null);
-                bi.hh01c.setError(null);*/
+                bi.hh01c.setError(null);*//*
                 bi.hh02.setChecked(false);
                 bi.hh03.clearCheck();
                 bi.openForm.setEnabled(false);
@@ -96,9 +93,9 @@ public class SectionAActivity extends AppCompatActivity {
                 bi.ebMsg.setText(null);
 
             }
-        });
+        });*/
 
-        bi.hh02.setOnCheckedChangeListener((compoundButton, b) -> {
+       /* bi.hh02.setOnCheckedChangeListener((compoundButton, b) -> {
             if (!selectedCluster.getEbcode().equals("") && b) {
                 bi.openForm.setEnabled(true);
 //                bi.openForm.setVisibility(View.VISIBLE);
@@ -107,7 +104,7 @@ public class SectionAActivity extends AppCompatActivity {
                 bi.openForm.setEnabled(false);
                 bi.openForm.setVisibility(View.GONE);
             }
-        });
+        });*/
 
     }
 
@@ -192,22 +189,26 @@ public class SectionAActivity extends AppCompatActivity {
                 if (position == 0) return;
                 Collection<Cluster> clusters = db.getAreaByCity(MainApp.user.getDist_id());
                 areaNames = new ArrayList<>();
+                areaCodes = new ArrayList<>();
                 areaNames.add("...");
+                areaCodes.add("...");
 
                 for (Cluster cluster : clusters) {
                     areaNames.add(cluster.getArea());
+                    areaCodes.add(cluster.getArea_code());
                 }
                 if (MainApp.user.getUserName().contains("test") || MainApp.user.getUserName().contains("dmu") || MainApp.user.getUserName().contains("user")) {
 
                     areaNames.add("Test Area 1 " + facilityNames.get(position));
                     areaNames.add("Test Area 2 " + facilityNames.get(position));
                     areaNames.add("Test Area 3 " + facilityNames.get(position));
+                    areaCodes.add(facilityCodes.get(position) + "001");
+                    areaCodes.add(facilityCodes.get(position) + "002");
+                    areaCodes.add(facilityCodes.get(position) + "003");
                 }
 
                 MainApp.selectedFacilityName = (facilityNames.get(bi.hh01b.getSelectedItemPosition()));
                 MainApp.selectedFacilityCode = (facilityCodes.get(bi.hh01b.getSelectedItemPosition()));
-                listings.setCluster(MainApp.selectedFacilityCode);
-                listings.setHh01(MainApp.selectedFacilityCode);
 
                 // Apply the adapter to the spinner
                 bi.hh01c.setAdapter(new ArrayAdapter<>(SectionAActivity.this, R.layout.custom_spinner, areaNames));
@@ -222,11 +223,15 @@ public class SectionAActivity extends AppCompatActivity {
         bi.hh01c.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    bi.openForm.setVisibility(View.VISIBLE);
-                    bi.openForm.setEnabled(true);
-                } else
-                    bi.openForm.setVisibility(View.GONE);
+                bi.openForm.setVisibility(View.GONE);
+                if (position == 0) return;
+                MainApp.selectedAreaName = areaNames.get(bi.hh01c.getSelectedItemPosition());
+                MainApp.selectedAreaCode = areaCodes.get(bi.hh01c.getSelectedItemPosition());
+                listings.setCluster(MainApp.selectedAreaCode);
+                listings.setHh01(MainApp.selectedAreaCode);
+                bi.openForm.setVisibility(View.VISIBLE);
+                bi.openForm.setEnabled(true);
+
             }
 
             @Override
@@ -236,7 +241,7 @@ public class SectionAActivity extends AppCompatActivity {
         });
 
 
-        List<Cluster> clustersList = db.getClusters();
+        /*List<Cluster> clustersList = db.getClusters();
         ebCode = new ArrayList<>();
         districtNames = new ArrayList<>();
         tehsilNames = new ArrayList<>();
@@ -249,8 +254,7 @@ public class SectionAActivity extends AppCompatActivity {
             facilityNames.add(geoArea[3]);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, ebCode);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, ebCode);*/
     }
 
     public void btnContinue(View view) {

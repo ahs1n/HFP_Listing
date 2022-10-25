@@ -107,7 +107,6 @@
 
                                 <edu.aku.hassannaqvi.hfplisting.core.NoMenuEditText
                                     android:id="@+id/username"
-                                    android:text="qadri2022"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center_horizontal"
@@ -139,7 +138,6 @@
 
                                     <edu.aku.hassannaqvi.hfplisting.core.NoMenuEditText
                                         android:id="@+id/password"
-                                        android:text="Qadri2022"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center_horizontal"

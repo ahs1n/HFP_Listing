@@ -72,6 +72,8 @@ public class SectionBActivity extends AppCompatActivity {
         listings.setHh14("");
         listings.setHh14a("");
         listings.setHh15("");
+        listings.setHh16("");
+        listings.setHh17("");
 
 /*
 

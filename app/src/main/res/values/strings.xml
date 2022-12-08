@@ -168,6 +168,8 @@
     <string name="hh18">تولیدی عمر کی خاتون (ماں) کے (5 سال سے لیکر 10 سال سے کم عمر) بچوں کی تعداد؟</string>
     <string name="hh19">تولیدی عمر کی خاتون (ماں) کے (10 سال سے لیکر 18 سال سے کم عمر) بچوں کی تعداد؟</string>
 
+    <string name="hh16new">عام طور پر بچوں کو کہاں سے حفاظتی ٹیکے لگواتے ہیں؟</string>
+
     <string name='Q_hh01'>hh01</string>
     <string name='Q_hh02'>hh02</string>
     <string name='Q_hh03'>hh03</string>
@@ -228,4 +230,11 @@
     <string name="invalid_response" translatable="false"> Invalid Response </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hh1601">سرکاری مرکز صحت</string>
+    <string name="hh1602">پرائیویٹ مرکز صحت</string>
+    <string name="hh1603">سرکاری آؤٹ ریچ سروس</string>
+    <string name="hh1604">بچوں کو حفاٖظتی ٹیکے نہیں لگواتے</string>
+    <string name="hh17new">مشاہدہ کریں کہ دروازے پر ای پی آئی یا پی آئی کی جانب سے ڈور مارکنگ موجود ہے</string>
+    <string name="hh1701">ہاں</string>
+    <string name="hh1702">نہیں</string>
 </resources>

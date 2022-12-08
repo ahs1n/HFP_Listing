@@ -79,6 +79,8 @@ public class Listings extends BaseObservable {
     private String hh14 = StringUtils.EMPTY;
     private String hh14a = StringUtils.EMPTY;
     private String hh15 = StringUtils.EMPTY;
+    private String hh16 = StringUtils.EMPTY;
+    private String hh17 = StringUtils.EMPTY;
 
     private String sA = StringUtils.EMPTY;
     private String sB = StringUtils.EMPTY;
@@ -274,6 +276,26 @@ public class Listings extends BaseObservable {
     }
 
     @Bindable
+    public String getHh16() {
+        return hh16;
+    }
+
+    public void setHh16(String hh16) {
+        this.hh16 = hh16;
+        notifyPropertyChanged(BR.hh16);
+    }
+
+    @Bindable
+    public String getHh17() {
+        return hh17;
+    }
+
+    public void setHh17(String hh17) {
+        this.hh17 = hh17;
+        notifyPropertyChanged(BR.hh17);
+    }
+
+    @Bindable
     public String getHh12() {
         return hh12;
     }
@@ -327,6 +349,9 @@ public class Listings extends BaseObservable {
     public void setHh13(String hh13) {
         this.hh13 = hh13;
         setHh13a(hh13.equals("1") ? this.hh13a : "");
+        setHh14(hh13.equals("1") ? this.hh14 : "");
+        setHh16(hh13.equals("1") ? this.hh16 : "");
+        setHh17(hh13.equals("1") ? this.hh17 : "");
 /*        setHh14(hh13.equals("1") ? this.hh14 : "");
         setHh14a(hh13.equals("1") ? this.hh14a : "");*/
         notifyPropertyChanged(BR.hh13);
@@ -676,6 +701,8 @@ public class Listings extends BaseObservable {
             this.hh14 = json.getString("hh14");
             this.hh14a = json.getString("hh14a");
             this.hh15 = json.getString("hh15");
+            this.hh16 = json.getString("hh16");
+            this.hh17 = json.getString("hh17");
 
 
         }
@@ -722,7 +749,9 @@ public class Listings extends BaseObservable {
                 .put("hh13a", hh13a)
                 .put("hh14", hh14)
                 .put("hh14a", hh14a)
-                .put("hh15", hh15);
+                .put("hh15", hh15)
+                .put("hh16", hh16)
+                .put("hh17", hh17);
         return json.toString();
     }
 

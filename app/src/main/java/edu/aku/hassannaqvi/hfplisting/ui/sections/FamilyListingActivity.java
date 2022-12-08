@@ -55,6 +55,8 @@ public class FamilyListingActivity extends AppCompatActivity {
         listings.setHh14("");
         listings.setHh14a("");
         listings.setHh15("");
+        listings.setHh16("");
+        listings.setHh17("");
         bi.btnEnd.setVisibility(MainApp.hhid == 1 ? View.GONE : View.VISIBLE);
 
         /*if (MainApp.hhid >= Integer.parseInt(MainApp.listings.getHh10())) {
@@ -164,6 +166,8 @@ public class FamilyListingActivity extends AppCompatActivity {
         bi.hh14a.setText("Deleted");
         bi.hh13.clearCheck();
         bi.hh13a.setText("00");
+        bi.hh16.clearCheck();
+        bi.hh17.clearCheck();
 
         //saveDraft();
         if (insertRecord()) {

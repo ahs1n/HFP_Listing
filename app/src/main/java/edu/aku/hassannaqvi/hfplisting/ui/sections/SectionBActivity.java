@@ -59,6 +59,8 @@ public class SectionBActivity extends AppCompatActivity {
         MainApp.hhid_char = "X";
 
         listings.setHh04(String.valueOf(maxStructure));
+        listings.setHh02a("");
+        listings.setHh02b("");
         listings.setHh07("");
         listings.setHh0717x("");
         listings.setHh08("");
@@ -67,6 +69,14 @@ public class SectionBActivity extends AppCompatActivity {
         listings.setHh05("");
         listings.setHh11("");
         listings.setHh12("");
+        listings.setHh12a("");
+        listings.setHh12b("");
+        listings.setHh12c("");
+        listings.setHh12d("");
+        listings.setHh12e("");
+        listings.setHh12f1("");
+        listings.setHh12f2("");
+        listings.setHh12f3("");
         listings.setHh13("");
         listings.setHh13a("");
         listings.setHh14("");

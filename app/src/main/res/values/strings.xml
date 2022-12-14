@@ -109,6 +109,8 @@
 
     <string name="hh01">کلسٹر/بلاک نمبر</string>
     <string name="hh02">پی ایس یو کی شناختی تصدیق</string>
+    <string name="hh02a"> خانداندان کا نمبر</string>
+    <string name="hh02b">گھر کے سربراہ کا موبائل نمبرر</string>
     <string name="hh021">کیا آپ اوپر دئیے گئے شہر/گاؤں میں موجود ہیں؟</string>
     <string name="hh03">کیا یہ پہلا ٹیبلیٹ ہے جو اس پی ایس یو کی لائن لسٹنگ کے لئے استعمال ہو رہا ہے؟</string>
     <string name="hh031">ہاں</string>
@@ -159,6 +161,14 @@
     <string name="hh1401">ہاں</string>
     <string name="hh1402">نہیں</string>
     <string name="hh14a">اگر ہاں، تو 12سے23 مہینے کی عمر کے بچوں کی تعداد بتائیں</string>
+    <string name="hh12d">کیا گھر میں کوئی حاملہ خاتون ہے؟</string>
+    <string name="hh12d1">ہاں</string>
+    <string name="hh12d2">نہیں</string>
+    <string name="hh12e"> گھر میں حاملہ خواتین کی تعداد</string>
+    <string name="hh12ftitle">حاملہ خاتون کا نام شوہر کے نام کے ساتھ</string>
+    <string name="hh12f1">1- حاملہ خاتون کا نام شوہر کے نام کے ساتھ</string>
+    <string name="hh12f2">2- حاملہ خاتون کا نام شوہر کے نام کے ساتھ</string>
+    <string name="hh12f3">3- حاملہ خاتون کا نام شوہر کے نام کے ساتھ</string>
     <string name="hh15"> کیا اس گھر میں مذید کوئی خاندان رہائش پزیر ہے </string>
 
     <string name="hh16">18 سال یا اس سے زیادہ کی تولیدی عمر کی خاتون (ماں) کا نام؟</string>
@@ -188,6 +198,11 @@
     <string name='Q_hh12a'>hh12a</string>
     <string name='Q_hh12b'>hh12b</string>
     <string name='Q_hh12c'>hh12c</string>
+    <string name='Q_hh12d'>hh12d</string>
+    <string name='Q_hh12e'>hh12e</string>
+    <string name='Q_hh12f1'>hh12f1</string>
+    <string name='Q_hh12f2'>hh12f2</string>
+    <string name='Q_hh12f3'>hh12f3</string>
     <string name='Q_hh13'>hh13</string>
     <string name='Q_hh13a'>hh13a</string>
     <string name='Q_hh16'>hh16</string>

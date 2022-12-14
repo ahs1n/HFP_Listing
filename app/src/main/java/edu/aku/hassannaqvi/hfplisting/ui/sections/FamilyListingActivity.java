@@ -45,11 +45,18 @@ public class FamilyListingActivity extends AppCompatActivity {
         MainApp.hhid++;
         MainApp.mwraCount = 0;
         listings.setHh05(String.valueOf(MainApp.hhid_char));
+        listings.setHh02a("");
         listings.setHh11("");
+        listings.setHh02b("");
         listings.setHh12("");
         listings.setHh12a("");
         listings.setHh12b("");
         listings.setHh12c("");
+        listings.setHh12d("");
+        listings.setHh12e("");
+        listings.setHh12f1("");
+        listings.setHh12f2("");
+        listings.setHh12f3("");
         listings.setHh13("");
         listings.setHh13a("");
         listings.setHh14("");
@@ -201,6 +208,13 @@ public class FamilyListingActivity extends AppCompatActivity {
 
             if (Integer.parseInt(bi.hh12c.getText().toString()) > Integer.parseInt(bi.hh12b.getText().toString())) {
                 Validator.emptyCustomTextBox(this, bi.hh12c, "Total maried women cannot be more than Total Females");
+                return false;
+            }
+        }
+
+        if (!bi.hh12e.getText().toString().equals("")) {
+            if (Integer.parseInt(bi.hh12e.getText().toString()) > Integer.parseInt(bi.hh12b.getText().toString())) {
+                Validator.emptyCustomTextBox(this, bi.hh12e, "Total pregnant women cannot be more than Total Females");
                 return false;
             }
         }

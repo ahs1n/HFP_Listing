@@ -1009,10 +1009,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
+        boolean distinct = true;
         String[] columns = null;
         String whereClause = ClusterTable.COLUMN_DIST_ID + " = ? ";
         String[] whereArgs = {distCode};
-        String groupBy = null;
+        String groupBy = ClusterTable.COLUMN_HF_NAME;
         String having = null;
 
         String orderBy = ClusterTable.COLUMN_ID + " ASC";
@@ -1020,13 +1021,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Cluster> cluster = new ArrayList<>();
 
         c = db.query(
+                distinct,
                 ClusterTable.TABLE_NAME,  // The table to query
                 columns,                   // The columns to return
                 whereClause,               // The columns for the WHERE clause
                 whereArgs,                 // The values for the WHERE clause
                 groupBy,                   // don't group the rows
                 having,                    // don't filter by row groups
-                orderBy                    // The sort order
+                orderBy,                    // The sort order
+                "9999"
         );
         while (c.moveToNext()) {
             cluster.add(new Cluster().hydrate(c));

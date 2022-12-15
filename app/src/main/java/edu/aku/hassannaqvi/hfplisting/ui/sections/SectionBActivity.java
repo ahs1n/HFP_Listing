@@ -54,7 +54,11 @@ public class SectionBActivity extends AppCompatActivity {
 
 //        maxStructure++;
         MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
-        maxStructure = Integer.parseInt(MainApp.clusterInfo[0]) + 1;
+        if (selectedCluster.getEbcode().equals("1901")) {
+            MainApp.maxStructure = Integer.parseInt(MainApp.clusterInfo[360] + 1);
+        } else {
+            maxStructure = Integer.parseInt(MainApp.clusterInfo[0]) + 1;
+        }
         MainApp.hhid = 0;
         MainApp.hhid_char = "X";
 
@@ -95,7 +99,7 @@ public class SectionBActivity extends AppCompatActivity {
         }
 */
 
-        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%03d", maxStructure));
+        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%04d", maxStructure));
 //        bi.hhid.setText("HFP-" + String.format("%04d", maxStructure));
         Toast.makeText(this, "Staring Structure", Toast.LENGTH_SHORT).show();
 

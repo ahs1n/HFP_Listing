@@ -284,7 +284,7 @@
                                 android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck() + listings.setHh12b(``) + listings.setHh12c(``)}"
                                 android:text="@={listings.hh12a}"
                                 app:maxValue="99"
-                                app:minValue="1"
+                                app:minValue="0"
                                 app:type="range" />
                         </LinearLayout>
                     </LinearLayout>
@@ -330,7 +330,7 @@
                                 android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck() + listings.setHh12c(``)}"
                                 android:text="@={listings.hh12b}"
                                 app:maxValue="99"
-                                app:minValue="1"
+                                app:minValue="0"
                                 app:type="range" />
                         </LinearLayout>
                     </LinearLayout>
@@ -376,7 +376,7 @@
                                 android:onTextChanged="@{()->listings.setHh13(``) + hh13.clearCheck() + listings.setHh14(``) + hh14.clearCheck()}"
                                 android:text="@={listings.hh12c}"
                                 app:maxValue="99"
-                                app:minValue="1"
+                                app:minValue="0"
                                 app:type="range" />
                         </LinearLayout>
                     </LinearLayout>
@@ -686,22 +686,24 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_weight="2"
                                 android:text="@string/hh13a" />
-                        </LinearLayout>
 
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/hh13a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hh13a"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:onTextChanged="@{()-> listings.setHh14(``) + hh14.clearCheck()}"
-                            android:text="@={listings.hh13a}"
-                            app:maxValue="99"
-                            app:minValue="1"
-                            app:type="range" />
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh13a"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:onTextChanged="@{()-> listings.setHh14(``) + hh14.clearCheck()}"
+                                android:text="@={listings.hh13a}"
+                                app:maxValue="99"
+                                app:minValue="1"
+                                app:type="range" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -791,23 +793,26 @@
                                 android:text="@string/Q_hh14a" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
                                 android:layout_height="match_parent"
                                 android:text="@string/hh14a" />
 
-                        </LinearLayout>
 
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/hh14a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hh14a"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:text="@={listings.hh14a}"
-                            app:maxValue="20"
-                            app:minValue="1"
-                            app:type="range" />
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh14a"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:text="@={listings.hh14a}"
+                                app:maxValue="20"
+                                app:minValue="1"
+                                app:type="range" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

@@ -341,21 +341,23 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_weight="2"
                                 android:text="@string/hh10" />
-                        </LinearLayout>
 
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/hh10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hh10"
-                            android:inputType="number"
-                            android:maxLength="3"
-                            android:text="@={listings.hh10}"
-                            app:maxValue="100"
-                            app:minValue="2"
-                            app:type="range" />
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh10"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:hint="###"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:text="@={listings.hh10}"
+                                app:maxValue="100"
+                                app:minValue="2"
+                                app:type="range" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

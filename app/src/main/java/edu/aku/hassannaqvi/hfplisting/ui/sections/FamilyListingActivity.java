@@ -209,6 +209,9 @@ public class FamilyListingActivity extends AppCompatActivity {
             if (Integer.parseInt(bi.hh12c.getText().toString()) > Integer.parseInt(bi.hh12b.getText().toString())) {
                 Validator.emptyCustomTextBox(this, bi.hh12c, "Total maried women cannot be more than Total Females");
                 return false;
+            } else if (listings.getHh12().equals("0")) {
+                Validator.emptyCustomTextBox(this, bi.hh12, "Total members cannot be 0");
+                return false;
             }
         }
 

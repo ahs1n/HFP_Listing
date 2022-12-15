@@ -756,8 +756,6 @@ public class Listings extends BaseObservable {
             this.hh04 = json.getString("hh04");
             this.hh07 = json.getString("hh07");
             this.hh0717x = json.getString("hh0717x");
-            this.hh02a = json.getString("hh02a");
-            this.hh02b = json.getString("hh02b");
             this.hh08 = json.getString("hh08");
             this.hh09 = json.getString("hh09");
             this.hh10 = json.getString("hh10");
@@ -770,6 +768,8 @@ public class Listings extends BaseObservable {
         if (string != null) {
             JSONObject json = null;
             json = new JSONObject(string);
+            this.hh02a = json.getString("hh02a");
+            this.hh02b = json.getString("hh02b");
             this.hh05 = json.getString("hh05");
             this.hh11 = json.getString("hh11");
             this.hh12 = json.getString("hh12");
@@ -813,8 +813,6 @@ public class Listings extends BaseObservable {
         json.put("hh04", hh04)
                 .put("hh07", hh07)
                 .put("hh0717x", hh0717x)
-                .put("hh02a", hh02a)
-                .put("hh02b", hh02b)
                 .put("hh08", hh08)
                 .put("hh09", hh09)
                 .put("hh10", hh10);
@@ -827,6 +825,8 @@ public class Listings extends BaseObservable {
         JSONObject json = new JSONObject();
 
         json.put("hh05", hh05)
+                .put("hh02a", hh02a)
+                .put("hh02b", hh02b)
                 .put("hh11", hh11)
                 .put("hh12", hh12)
                 .put("hh12a", hh12a)

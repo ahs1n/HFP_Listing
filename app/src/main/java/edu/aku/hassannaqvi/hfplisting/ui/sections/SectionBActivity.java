@@ -3,7 +3,7 @@ package edu.aku.hassannaqvi.hfplisting.ui.sections;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.editor;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.maxStructure;
-import static edu.aku.hassannaqvi.hfplisting.core.MainApp.selectedCluster;
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.selectedAreaCode;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.sharedPref;
 
 import android.content.Context;
@@ -53,12 +53,16 @@ public class SectionBActivity extends AppCompatActivity {
         db = MainApp.appInfo.dbHelper;
 
 //        maxStructure++;
-        MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
-        if (selectedCluster.getEbcode().equals("1901")) {
-            MainApp.maxStructure = Integer.parseInt(MainApp.clusterInfo[360] + 1);
-        } else {
-            maxStructure = Integer.parseInt(MainApp.clusterInfo[0]) + 1;
+//        MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
+        MainApp.clusterInfo = sharedPref.getString(selectedAreaCode, "0|0").split("\\|");
+        int structure = Integer.parseInt(MainApp.clusterInfo[0]);
+        if (selectedAreaCode.equals("1901") && structure < 360) {
+            structure = 360;
+            editor.putString(selectedAreaCode, String.valueOf(structure));
+            editor.apply();
         }
+        maxStructure = structure + 1;
+
         MainApp.hhid = 0;
         MainApp.hhid_char = "X";
 
@@ -152,7 +156,8 @@ public class SectionBActivity extends AppCompatActivity {
 
             if (updCount > 0) {
 
-                editor.putString(selectedCluster.getEbcode(), maxStructure + "|" + listings.getTabNo());
+//                editor.putString(selectedCluster.getEbcode(), maxStructure + "|" + listings.getTabNo());
+                editor.putString(selectedAreaCode, maxStructure + "|" + listings.getTabNo());
                 editor.apply();
 
                 return true;
@@ -173,6 +178,9 @@ public class SectionBActivity extends AppCompatActivity {
             maxStructure--;
             listings.setHh04("");
         }
+
+//        editor.putInt("new_max", maxStructure);
+//        editor.apply();
 
         try {
             if (insertRecord()) {

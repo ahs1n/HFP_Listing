@@ -48,68 +48,8 @@ public class SectionAActivity extends AppCompatActivity {
         listings = new Listings();
         bi.setListings(listings);
         st = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date().getTime());
-        setupSkips();
         setSupportActionBar(bi.toolbar);
-
         populateSpinner();
-
-        /*bi.hh01.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                *//*bi.hh01a.setText(null);
-                bi.hh01b.setText(null);
-                bi.hh01c.setText(null);*//*
-                bi.hh02.setChecked(false);
-                bi.hh03.clearCheck();
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() == 9) {
-                    bi.searchEB.setBackgroundColor(getResources().getColor(R.color.greenLight));
-                    bi.searchEB.setEnabled(true);
-                } else {
-                    bi.searchEB.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-                    bi.searchEB.setEnabled(false);
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                *//*bi.hh01a.setText(null);
-                bi.hh01b.setText(null);
-                bi.hh01c.setText(null);
-                bi.hh01a.setError(null);
-                bi.hh01b.setError(null);
-                bi.hh01c.setError(null);*//*
-                bi.hh02.setChecked(false);
-                bi.hh03.clearCheck();
-                bi.openForm.setEnabled(false);
-                bi.openForm.setVisibility(View.GONE);
-                bi.fldGrpCVhh02.setVisibility(View.GONE);
-                bi.fldGrpCVhh03.setVisibility(View.GONE);
-                bi.ebMsg.setText(null);
-
-            }
-        });*/
-
-       /* bi.hh02.setOnCheckedChangeListener((compoundButton, b) -> {
-            if (!selectedCluster.getEbcode().equals("") && b) {
-                bi.openForm.setEnabled(true);
-//                bi.openForm.setVisibility(View.VISIBLE);
-
-            } else {
-                bi.openForm.setEnabled(false);
-                bi.openForm.setVisibility(View.GONE);
-            }
-        });*/
-
-    }
-
-
-    private void setupSkips() {
     }
 
     private void populateSpinner() {
@@ -239,22 +179,6 @@ public class SectionAActivity extends AppCompatActivity {
             }
 
         });
-
-
-        /*List<Cluster> clustersList = db.getClusters();
-        ebCode = new ArrayList<>();
-        districtNames = new ArrayList<>();
-        tehsilNames = new ArrayList<>();
-        facilityNames = new ArrayList<>();
-        for (Cluster c : clustersList) {
-            ebCode.add(c.getEbcode());
-            String[] geoArea = c.getGeoarea().split("\\|");
-            districtNames.add(geoArea[1]);
-            tehsilNames.add(geoArea[2]);
-            facilityNames.add(geoArea[3]);
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, ebCode);*/
     }
 
     public void btnContinue(View view) {
@@ -285,9 +209,6 @@ public class SectionAActivity extends AppCompatActivity {
     }
 
     public void searchEB(View view) {
-        /*bi.hh01a.setText("");
-        bi.hh01b.setText("");
-        bi.hh01c.setText("");*/
         bi.hh02.setChecked(false);
         bi.hh03.clearCheck();
         bi.openForm.setEnabled(false);
@@ -306,22 +227,12 @@ public class SectionAActivity extends AppCompatActivity {
                 MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
                 MainApp.maxStructure = Integer.parseInt(MainApp.clusterInfo[0]);
 
-
-                /*bi.hh01a.setError(null);
-                bi.hh01b.setError(null);
-                bi.hh01c.setError(null);*/
-
                 String[] geoArea = selectedCluster.getGeoarea().split("\\|");
-                /*bi.hh01a.setText(geoArea[1]);
-                bi.hh01b.setText(geoArea[2]);
-                bi.hh01c.setText(geoArea[3]);*/
 
                 bi.fldGrpCVhh02.setVisibility(View.VISIBLE);
 
                 if (bi.hh02.isChecked())
                     bi.openForm.setEnabled(true);
-//                bi.openForm.setVisibility(View.VISIBLE);
-
 
                 if (!MainApp.clusterInfo[0].equals("0")) {
                     //bi.fldGrpCVhh02e.setVisibility(View.GONE);
@@ -334,7 +245,6 @@ public class SectionAActivity extends AppCompatActivity {
                         //bi.hh032.setChecked(true);
                         listings.setHh03("2");
                         bi.fldGrpCVhh03.setVisibility(View.GONE);
-
                     }
                     selectedTab = listings.getTabNo();
                 } else {
@@ -344,20 +254,12 @@ public class SectionAActivity extends AppCompatActivity {
                 }
                 MainApp.selectedTab = MainApp.clusterInfo[1];
                 bi.ebMsg.setText("Existing structures: " + MainApp.maxStructure);
-
-
             }
         } else {
             selectedCluster = testEb;
             MainApp.maxStructure = 0;
             MainApp.selectedTab = "";
             bi.ebMsg.setText(null);
-            /*bi.hh01a.setError("Not Found!");
-            bi.hh01b.setError("Not Found!");
-            bi.hh01c.setText("Not Found!");*/
-
         }
-
     }
-
 }

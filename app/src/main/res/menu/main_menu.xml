@@ -24,6 +24,12 @@
                 android:id="@+id/changePassword"
                 android:title="Change Password" />
 
+            <item
+                android:id="@+id/sendDB"
+                android:title="Send DB"
+                android:titleCondensed="Email database"
+                app:showAsAction="collapseActionView"
+                android:visible="false"/>
             <!--  <item
                   android:id="@+id/action_forms"
                   android:title="Forms">

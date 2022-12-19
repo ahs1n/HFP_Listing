@@ -252,4 +252,6 @@
     <string name="hh17new">مشاہدہ کریں کہ دروازے پر ای پی آئی یا پی آئی کی جانب سے ڈور مارکنگ موجود ہے</string>
     <string name="hh1701">ہاں</string>
     <string name="hh1702">نہیں</string>
+    <string name="pick_email_provider">Pick an email provider</string>
+    <string name="file_not_found">File not found</string>
 </resources>

@@ -103,6 +103,17 @@
         <meta-data
             android:name="YEK_TRATS"
             android:value="7" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="edu.aku.hassannaqvi.hfplisting.fileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

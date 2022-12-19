@@ -102,6 +102,7 @@ public class FamilyListingActivity extends AppCompatActivity {
         long updcount = 0;
         try {
             updcount = db.updateFormColumn(TableContracts.ListingsTable.COLUMN_SC, listings.sCtoString());
+            updcount = db.updateFormColumn(TableContracts.ListingsTable.COLUMN_SB, listings.sBtoString());
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d(TAG, R.string.upd_db_form + e.getMessage());
@@ -151,6 +152,7 @@ public class FamilyListingActivity extends AppCompatActivity {
         if (!formValidation()) return;
         //saveDraft();
         if (MainApp.hhid == 1 ? updateDB() : insertRecord()) {
+//        if (MainApp.hhid == 1 ? insertRecord() : updateDB()) {
             finish();
             if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
                 //   Toast.makeText(this, "Staring Family", Toast.LENGTH_SHORT).show();

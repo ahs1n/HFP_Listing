@@ -201,7 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(column, value);
 
-        String selection = ListingsTable._ID + " =? ";
+        String selection = ListingsTable.COLUMN_ID + " =? ";
         String[] selectionArgs = {String.valueOf(MainApp.listings.getId())};
 
         return db.update(TableContracts.ListingsTable.TABLE_NAME,
@@ -1066,4 +1066,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cluster;
     }
+
+    // Get last structure number from area code
+    public String getStructureFromAreaCode(String areaCode) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause;
+        whereClause = TableContracts.ListingsTable.COLUMN_CLUSTER + " =? ";
+
+        String[] whereArgs = {areaCode};
+
+        String groupBy = null;
+        String having = null;
+        String limit = "1";
+
+        String orderBy = TableContracts.ListingsTable.COLUMN_ID + " DESC";
+
+        String structure = null;
+
+        Listings listings;
+        c = db.query(
+                TableContracts.ListingsTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy,                   // The sort order
+                limit                       // limit
+        );
+        while (c.moveToNext()) {
+            try {
+                listings = new Listings().Hydrate(c);
+                structure = listings.getHh04();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        if (c != null && !c.isClosed()) {
+            c.close();
+        }
+
+
+        return structure;
+    }
+
+
 }

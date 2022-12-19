@@ -25,6 +25,7 @@ import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.hfplisting.MainActivity;
@@ -33,6 +34,8 @@ import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts;
 import edu.aku.hassannaqvi.hfplisting.core.MainApp;
 import edu.aku.hassannaqvi.hfplisting.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hfplisting.databinding.ActivitySectionBBinding;
+import edu.aku.hassannaqvi.hfplisting.models.Cluster;
+import edu.aku.hassannaqvi.hfplisting.models.Listings;
 
 public class SectionBActivity extends AppCompatActivity {
     private static final String TAG = "SectionBActivity";
@@ -54,7 +57,13 @@ public class SectionBActivity extends AppCompatActivity {
 
 //        maxStructure++;
 //        MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
-        MainApp.clusterInfo = sharedPref.getString(selectedAreaCode, "0|0").split("\\|");
+//        MainApp.clusterInfo = sharedPref.getString(selectedAreaCode, "0|0").split("\\|");
+        String structureStr = db.getStructureFromAreaCode(selectedAreaCode);
+        if (structureStr != null && !structureStr.equals(""))
+            MainApp.clusterInfo = (new String[]{structureStr + "|" + listings.getTabNo()})[0].split("\\|");
+        else
+            MainApp.clusterInfo = sharedPref.getString(selectedAreaCode, "0|0").split("\\|");
+
         int structure = Integer.parseInt(MainApp.clusterInfo[0]);
         if (selectedAreaCode.equals("1901") && structure < 360) {
             structure = 360;

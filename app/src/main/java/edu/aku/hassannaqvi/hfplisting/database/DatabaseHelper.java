@@ -7,12 +7,12 @@ import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_ALTER_LIST
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_ALTER_LISTING_GPS_DATE;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_ALTER_LISTING_GPS_LAT;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_ALTER_LISTING_GPS_LNG;
+import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_CHILDREN;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_CLUSTERS;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_ENTRYLOGS;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_FACILITIES;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_LISTINGS;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_USERS;
-import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_CHILDREN;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -37,19 +37,20 @@ import java.util.Date;
 import java.util.List;
 
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts;
+import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.ChildrenTable;
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.ClusterTable;
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.EntryLogTable;
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.ListingsTable;
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.MwraTable;
 import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts.UsersTable;
 import edu.aku.hassannaqvi.hfplisting.core.MainApp;
+import edu.aku.hassannaqvi.hfplisting.models.Children;
 import edu.aku.hassannaqvi.hfplisting.models.Cluster;
 import edu.aku.hassannaqvi.hfplisting.models.EntryLog;
 import edu.aku.hassannaqvi.hfplisting.models.HealthFacilities;
 import edu.aku.hassannaqvi.hfplisting.models.Listings;
 import edu.aku.hassannaqvi.hfplisting.models.Mwra;
 import edu.aku.hassannaqvi.hfplisting.models.Users;
-import edu.aku.hassannaqvi.hfplisting.models.Children;
 
 
 
@@ -879,6 +880,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] whereArgs = {id};
         int count = db.update(
                 EntryLogTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+
+    public void updateSyncedChildren(String id) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        ContentValues values = new ContentValues();
+        values.put(ChildrenTable.COLUMN_SYNCED, true);
+        values.put(ChildrenTable.COLUMN_SYNCED_DATE, new Date().toString());
+        String where = ChildrenTable.COLUMN_ID + " = ?";
+        String[] whereArgs = {id};
+        int count = db.update(
+                ChildrenTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);

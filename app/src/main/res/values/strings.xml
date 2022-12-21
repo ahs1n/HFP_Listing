@@ -254,4 +254,11 @@
     <string name="hh1702">نہیں</string>
     <string name="pick_email_provider">Pick an email provider</string>
     <string name="file_not_found">File not found</string>
+    <string name="Q_vc01">VC01</string>
+    <string name="vc01">بچے کا نام</string>
+    <string name="Q_vc02">VC02</string>
+    <string name="vc02">ویکسینیشن کارڈ نمبر</string>
+    <string name="Q_vc03">VC03</string>
+    <string name="vc03">عمر</string>
+    <string name="in_months">مہینوں میں</string>
 </resources>

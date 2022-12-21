@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="edu.aku.hassannaqvi.hfplisting.core.MainApp"
+        android:name=".core.MainApp"
         android:allowBackup="false"
         android:icon="@drawable/app_icon"
         android:immersive="true"
@@ -36,7 +36,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.splashscreen"
@@ -48,51 +48,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.database.AndroidManager"
+            android:name=".database.AndroidManager"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.sections.SectionAActivity"
+            android:name=".ui.sections.SectionAActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.sections.SectionBActivity"
+            android:name=".ui.sections.SectionBActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.sections.FamilyListingActivity"
+            android:name=".ui.sections.FamilyListingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.sections.MWRAListingActivity"
+            android:name=".ui.sections.MWRAListingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.SyncActivity"
+            android:name=".ui.SyncActivity"
             android:exported="false"
-            android:parentActivityName="edu.aku.hassannaqvi.hfplisting.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.MainActivity"
+            android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.lists.ListingsReporter"
+            android:name=".ui.lists.ListingsReporter"
             android:exported="false"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.hfplisting.ui.ChangePasswordActivity"
+            android:name=".ui.ChangePasswordActivity"
             android:exported="false"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
@@ -107,13 +107,17 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="edu.aku.hassannaqvi.hfplisting.fileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
+        <activity
+            android:name=".ui.sections.VaccinationActivity"
+            android:exported="false"
+            android:theme="@style/AppThemeUrdu"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

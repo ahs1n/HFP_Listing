@@ -36,6 +36,7 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.hfplisting.BuildConfig;
 import edu.aku.hassannaqvi.hfplisting.R;
+import edu.aku.hassannaqvi.hfplisting.models.Children;
 import edu.aku.hassannaqvi.hfplisting.models.Cluster;
 import edu.aku.hassannaqvi.hfplisting.models.Listings;
 import edu.aku.hassannaqvi.hfplisting.models.Mwra;
@@ -79,6 +80,7 @@ public class MainApp extends Application {
     // Tables
     public static Listings listings;
     public static Mwra mwra;
+    public static Children child;
     public static String DeviceURL = "devices.php";
     public static AppInfo appInfo;
     public static Users user;
@@ -109,6 +111,7 @@ public class MainApp extends Application {
     public static Cluster selectedCluster;
     public static Cluster cluster;
     public static int maxStructure;
+    public static int childNumber;
     public static String hhid_char;
     public static int hhid;
     public static int HHCount = 0;

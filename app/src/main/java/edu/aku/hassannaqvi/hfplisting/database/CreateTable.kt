@@ -8,7 +8,7 @@ object CreateTable {
 
     const val DATABASE_NAME = "$PROJECT_NAME.db"
     const val DATABASE_COPY = "${PROJECT_NAME}_copy.db"
-    const val DATABASE_VERSION = 1
+    const val DATABASE_VERSION = 3
 
     const val SQL_CREATE_LISTINGS = ("CREATE TABLE "
             + ListingsTable.TABLE_NAME + "("
@@ -123,6 +123,33 @@ object CreateTable {
             + EntryLogTable.COLUMN_SYNCED + " TEXT,"
             + EntryLogTable.COLUMN_SYNC_DATE + " TEXT,"
             + EntryLogTable.COLUMN_APPVERSION + " TEXT"
+            + " );"
+            )
+
+    const val SQL_CREATE_CHILDREN = ("CREATE TABLE "
+            + ChildrenTable.TABLE_NAME + "("
+            + ChildrenTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ChildrenTable.COLUMN_PROJECT_NAME + " TEXT,"
+            + ChildrenTable.COLUMN_UID + " TEXT,"
+            + ChildrenTable.COLUMN_UUID + " TEXT,"
+            + ChildrenTable.COLUMN_USERNAME + " TEXT,"
+            + ChildrenTable.COLUMN_CLUSTER + " TEXT,"
+            + ChildrenTable.COLUMN_SYSDATE + " TEXT,"
+            + ChildrenTable.COLUMN_TAB_NO + " TEXT,"
+            + ChildrenTable.COLUMN_GEOAREA + " TEXT,"
+            + ChildrenTable.COLUMN_START_TIME + " TEXT,"
+            + ChildrenTable.COLUMN_END_TIME + " TEXT,"
+            + ChildrenTable.COLUMN_ISTATUS + " TEXT,"
+            + ChildrenTable.COLUMN_DEVICEID + " TEXT,"
+            + ChildrenTable.COLUMN_DEVICETAGID + " TEXT,"
+            + ChildrenTable.COLUMN_GPSLAT + " TEXT,"
+            + ChildrenTable.COLUMN_GPSLNG + " TEXT,"
+            + ChildrenTable.COLUMN_GPSDATE + " TEXT,"
+            + ChildrenTable.COLUMN_GPSACC + " TEXT,"
+            + ChildrenTable.COLUMN_SYNCED + " TEXT,"
+            + ChildrenTable.COLUMN_SYNCED_DATE + " TEXT,"
+            + ChildrenTable.COLUMN_APPVERSION + " TEXT,"
+            + ChildrenTable.COLUMN_SV + " TEXT"
             + " );"
             )
 

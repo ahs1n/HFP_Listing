@@ -1,6 +1,7 @@
 package edu.aku.hassannaqvi.hfplisting.ui.sections;
 
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.childNumber;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -154,7 +155,12 @@ public class FamilyListingActivity extends AppCompatActivity {
         if (MainApp.hhid == 1 ? updateDB() : insertRecord()) {
 //        if (MainApp.hhid == 1 ? insertRecord() : updateDB()) {
             finish();
-            if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
+            if (Integer.parseInt(listings.getHh13()) == 1) {
+//                if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1"))
+//                    MainApp.hhid_char = String.valueOf((char) MainApp.hhid_char.charAt(0));
+                startActivity(new Intent(this, VaccinationActivity.class));
+                childNumber = 0;
+            } else if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
                 //   Toast.makeText(this, "Staring Family", Toast.LENGTH_SHORT).show();
 
                 MainApp.hhid_char = String.valueOf((char) (MainApp.hhid_char.charAt(0) + 1));

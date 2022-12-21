@@ -12,6 +12,7 @@ import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_ENT
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_FACILITIES;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_LISTINGS;
 import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_USERS;
+import static edu.aku.hassannaqvi.hfplisting.database.CreateTable.SQL_CREATE_CHILDREN;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -48,6 +49,7 @@ import edu.aku.hassannaqvi.hfplisting.models.HealthFacilities;
 import edu.aku.hassannaqvi.hfplisting.models.Listings;
 import edu.aku.hassannaqvi.hfplisting.models.Mwra;
 import edu.aku.hassannaqvi.hfplisting.models.Users;
+import edu.aku.hassannaqvi.hfplisting.models.Children;
 
 
 
@@ -63,7 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = PROJECT_NAME + ".db";
     public static final String DATABASE_COPY = PROJECT_NAME + "_copy.db";
     public static final String DATABASE_PASSWORD = IBAHC;
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private final String TAG = "DatabaseHelper";
     private final Context mContext;
 
@@ -80,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_LISTINGS);
         // db.execSQL(SQL_CREATE_MWRA);
         db.execSQL(SQL_CREATE_ENTRYLOGS);
+        db.execSQL(SQL_CREATE_CHILDREN);
 
     }
 
@@ -91,6 +94,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL(SQL_ALTER_LISTING_GPS_LNG);
                 db.execSQL(SQL_ALTER_LISTING_GPS_DATE);
                 db.execSQL(SQL_ALTER_LISTING_GPS_ACC);
+                break;
+            case 2:
+                db.execSQL(SQL_CREATE_CHILDREN);
         }
     }
 
@@ -131,6 +137,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         newRowId = db.insertOrThrow(
                 ListingsTable.TABLE_NAME,
                 TableContracts.ListingsTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
+
+    //ADDITION in DB
+    public Long addChild(Children vc) throws JSONException {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(TableContracts.ChildrenTable.COLUMN_PROJECT_NAME, vc.getProjectName());
+        values.put(TableContracts.ChildrenTable.COLUMN_UID, vc.getUid());
+        values.put(TableContracts.ChildrenTable.COLUMN_UUID, vc.getUuid());
+        values.put(TableContracts.ChildrenTable.COLUMN_USERNAME, vc.getUserName());
+        values.put(TableContracts.ChildrenTable.COLUMN_CLUSTER, vc.getCluster());
+        values.put(TableContracts.ChildrenTable.COLUMN_SYSDATE, vc.getSysDate());
+        values.put(TableContracts.ChildrenTable.COLUMN_TAB_NO, vc.getTabNo());
+        values.put(TableContracts.ChildrenTable.COLUMN_GEOAREA, vc.getGeoArea());
+        values.put(TableContracts.ChildrenTable.COLUMN_ISTATUS, vc.getiStatus());
+        values.put(TableContracts.ChildrenTable.COLUMN_DEVICETAGID, vc.getDeviceTag());
+        values.put(TableContracts.ChildrenTable.COLUMN_DEVICEID, vc.getDeviceId());
+        values.put(TableContracts.ChildrenTable.COLUMN_APPVERSION, vc.getAppver());
+        values.put(TableContracts.ChildrenTable.COLUMN_START_TIME, vc.getStartTime());
+        values.put(TableContracts.ChildrenTable.COLUMN_END_TIME, vc.getEndTime());
+        values.put(TableContracts.ChildrenTable.COLUMN_GPSLAT, vc.getGpsLat());
+        values.put(TableContracts.ChildrenTable.COLUMN_GPSLNG, vc.getGpsLng());
+        values.put(TableContracts.ChildrenTable.COLUMN_GPSDATE, vc.getGpsDT());
+        values.put(TableContracts.ChildrenTable.COLUMN_GPSACC, vc.getGpsAcc());
+
+        // Put all JSON as xxtoString()
+        values.put(TableContracts.ChildrenTable.COLUMN_SV, vc.sVtoString());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insertOrThrow(
+                TableContracts.ChildrenTable.TABLE_NAME,
+                TableContracts.ChildrenTable.COLUMN_NAME_NULLABLE,
                 values);
         return newRowId;
     }
@@ -210,6 +255,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
+    //UPDATE in DB
+    public int updateFormChildrenColumn(String column, String value) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+
+        ContentValues values = new ContentValues();
+        values.put(column, value);
+
+        String selection = TableContracts.ChildrenTable.COLUMN_ID + " =? ";
+        String[] selectionArgs = {String.valueOf(MainApp.child.getId())};
+
+        return db.update(TableContracts.ChildrenTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
 
     public int updateEnding() {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
@@ -656,6 +716,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //get UnSyncedTables
+    public JSONArray getUnsyncedChildren() throws JSONException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause;
+        whereClause = TableContracts.ChildrenTable.COLUMN_SYNCED + " is null ";
+
+        String[] whereArgs = null;
+
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = TableContracts.ChildrenTable.COLUMN_ID + " ASC";
+
+        JSONArray allForm = new JSONArray();
+        c = db.query(
+                TableContracts.ChildrenTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            Log.d(TAG, "getUnsyncedForm: " + c.getCount());
+            Children children = new Children();
+            allForm.put(children.Hydrate(c).toJSONObject());
+        }
+        if (c != null && !c.isClosed()) {
+            c.close();
+        }
+        Log.d(TAG, "getUnsyncedForm: " + allForm.toString().length());
+        Log.d(TAG, "getUnsyncedForm: " + allForm);
+        return allForm;
+    }
+
+    //get UnSyncedTables
     public JSONArray getUnsyncedMwra() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
@@ -1068,7 +1167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Get last structure number from area code
-    public String getStructureFromAreaCode(String areaCode) {
+    public boolean getStructureFromAreaCode(String areaCode, int offset) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = null;
@@ -1086,31 +1185,103 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String structure = null;
 
-        Listings listings;
-        c = db.query(
-                TableContracts.ListingsTable.TABLE_NAME,  // The table to query
-                columns,                   // The columns to return
-                whereClause,               // The columns for the WHERE clause
-                whereArgs,                 // The values for the WHERE clause
-                groupBy,                   // don't group the rows
-                having,                    // don't filter by row groups
-                orderBy,                   // The sort order
-                limit                       // limit
-        );
-        while (c.moveToNext()) {
+//        List<Listings> allListing = new ArrayList<>();
+//        Listings listings = null;
+        c = db.rawQuery("SELECT * FROM " + TableContracts.ListingsTable.TABLE_NAME + " WHERE " + TableContracts.ListingsTable.COLUMN_CLUSTER + " = ?" + " ORDER BY " + TableContracts.ListingsTable.COLUMN_ID + " DESC" + " LIMIT " + limit + " OFFSET " + offset, whereArgs);
+//        c = db.query(
+//                TableContracts.ListingsTable.TABLE_NAME,  // The table to query
+//                columns,                   // The columns to return
+//                whereClause,               // The columns for the WHERE clause
+//                whereArgs,                 // The values for the WHERE clause
+//                groupBy,                   // don't group the rows
+//                having,                    // don't filter by row groups
+//                orderBy                   // The sort order
+////                limit                       // limit
+//        );
+//        while (c.moveToNext()) {
+        if (c != null) {
             try {
-                listings = new Listings().Hydrate(c);
-                structure = listings.getHh04();
+
+                if (c.getCount() == 0) {
+                    return false;
+                }
+                //more to the first row
+                c.moveToFirst();
+                //iterate over rows
+//                for (int i = c.getCount() - 1; i >= 0; i--) {
+//                listings = new Listings().Hydrate(c);
+                MainApp.listings.sBHydrate(c.getString(c.getColumnIndexOrThrow(TableContracts.ListingsTable.COLUMN_SB)));
+//                if (listings.getHh04() != null && !listings.getHh04().equals("")) {
+//                    structure = listings.getHh04();
+//                    break;
+//                }
+//                    if (listings.getHh04() != null && !listings.getHh04().equals("")) {
+//                        structure = listings.getHh04();
+//                        return structure;
+//                    } else {
+//                         return getStructureFromAreaCode(areaCode, ++offset);
+//                    }
+//                allListing.add(new Listings().Hydrate(c));
+//                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+//        }
         if (c != null && !c.isClosed()) {
             c.close();
         }
+//        if (allListing.size() > 0) {
+//            for (int i = 0; i < allListing.size(); i++) {
+//                if (allListing.get(i).getHh04() != null && !allListing.get(i).getHh04().equals("")) {
+//                    structure = allListing.get(i).getHh04();
+//                    break;
+//                }
+//            }
+//        }
 
+//        return listings;
+        return true;
+    }
 
-        return structure;
+    // Get listings count by area
+    public int getListingsCountByArea(String areaCode) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause;
+        whereClause = TableContracts.ListingsTable.COLUMN_CLUSTER + " =? ";
+
+        String[] whereArgs = {areaCode};
+
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = TableContracts.ListingsTable.COLUMN_ID + " ASC";
+
+        int count = 0;
+        c = db.rawQuery("SELECT COUNT(" + TableContracts.ListingsTable.COLUMN_ID + ") FROM " + TableContracts.ListingsTable.TABLE_NAME, null);
+//        c = db.query(
+//                TableContracts.ListingsTable.TABLE_NAME,  // The table to query
+//                columns,                   // The columns to return
+//                whereClause,               // The columns for the WHERE clause
+//                whereArgs,                 // The values for the WHERE clause
+//                groupBy,                   // don't group the rows
+//                having,                    // don't filter by row groups
+//                orderBy                   // The sort order
+////                limit                       // limit
+//        );
+
+        if (c != null) {
+            if (c.getCount() > 0) {
+                c.moveToFirst();
+                count = c.getInt(0);
+            }
+            c.close();
+        }
+
+        return count;
     }
 
 

@@ -25,7 +25,6 @@ import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.hfplisting.MainActivity;
@@ -34,8 +33,6 @@ import edu.aku.hassannaqvi.hfplisting.contracts.TableContracts;
 import edu.aku.hassannaqvi.hfplisting.core.MainApp;
 import edu.aku.hassannaqvi.hfplisting.database.DatabaseHelper;
 import edu.aku.hassannaqvi.hfplisting.databinding.ActivitySectionBBinding;
-import edu.aku.hassannaqvi.hfplisting.models.Cluster;
-import edu.aku.hassannaqvi.hfplisting.models.Listings;
 
 public class SectionBActivity extends AppCompatActivity {
     private static final String TAG = "SectionBActivity";
@@ -58,7 +55,21 @@ public class SectionBActivity extends AppCompatActivity {
 //        maxStructure++;
 //        MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
 //        MainApp.clusterInfo = sharedPref.getString(selectedAreaCode, "0|0").split("\\|");
-        String structureStr = db.getStructureFromAreaCode(selectedAreaCode);
+        String structureStr = null;
+        int listingCount = db.getListingsCountByArea(selectedAreaCode);
+        if (listingCount > 0) {
+            for (int i = 0; i < listingCount; i++) {
+//                Listings _listings = db.getStructureFromAreaCode(selectedAreaCode, i);
+                boolean isQueryNotEmpty = db.getStructureFromAreaCode(selectedAreaCode, i);
+                if (!isQueryNotEmpty)
+                    break;
+                if (listings.getHh04() != null && !listings.getHh04().equals("")) {
+                    structureStr = listings.getHh04();
+                    break;
+                }
+            }
+        }
+//        String structureStr = db.getStructureFromAreaCode(selectedAreaCode, 0);
         if (structureStr != null && !structureStr.equals(""))
             MainApp.clusterInfo = (new String[]{structureStr + "|" + listings.getTabNo()})[0].split("\\|");
         else
@@ -202,6 +213,7 @@ public class SectionBActivity extends AppCompatActivity {
                     i = new Intent(this, FamilyListingActivity.class);
                     MainApp.hhid = 0;
                     MainApp.hhid_char = "X";
+                    MainApp.childNumber = 0;
 
                 } else {
                     i = new Intent(this, SectionBActivity.class);

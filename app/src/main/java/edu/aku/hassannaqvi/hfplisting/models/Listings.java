@@ -847,7 +847,6 @@ public class Listings extends BaseObservable {
         return json.toString();
     }
 
-
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();

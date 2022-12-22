@@ -31,25 +31,25 @@ public class Children extends BaseObservable {
     private String id = StringUtils.EMPTY;
     private String uid = StringUtils.EMPTY;
     private String uuid = StringUtils.EMPTY;
-    private String cluster = StringUtils.EMPTY;
+//    private String cluster = StringUtils.EMPTY;
     private String enumCode = StringUtils.EMPTY;
     private String userName = StringUtils.EMPTY;
     private String sysDate = StringUtils.EMPTY;
-    private String tabNo = StringUtils.EMPTY;
-    private String geoArea = StringUtils.EMPTY;
+//    private String tabNo = StringUtils.EMPTY;
+//    private String geoArea = StringUtils.EMPTY;
     private String deviceId = StringUtils.EMPTY;
-    private String deviceTag = StringUtils.EMPTY;
+//    private String deviceTag = StringUtils.EMPTY;
     private String appver = StringUtils.EMPTY;
-    private String endTime = StringUtils.EMPTY;
-    private String startTime = StringUtils.EMPTY;
-    private String iStatus = StringUtils.EMPTY;
+//    private String endTime = StringUtils.EMPTY;
+//    private String startTime = StringUtils.EMPTY;
+//    private String iStatus = StringUtils.EMPTY;
     private String iStatus96x = StringUtils.EMPTY;
     private String synced = StringUtils.EMPTY;
     private String syncDate = StringUtils.EMPTY;
-    private String gpsLat = StringUtils.EMPTY;
-    private String gpsLng = StringUtils.EMPTY;
-    private String gpsDT = StringUtils.EMPTY;
-    private String gpsAcc = StringUtils.EMPTY;
+//    private String gpsLat = StringUtils.EMPTY;
+//    private String gpsLng = StringUtils.EMPTY;
+//    private String gpsDT = StringUtils.EMPTY;
+//    private String gpsAcc = StringUtils.EMPTY;
 
     private String hh01 = StringUtils.EMPTY;
     private String hh04 = StringUtils.EMPTY;
@@ -57,6 +57,7 @@ public class Children extends BaseObservable {
     private String childName = StringUtils.EMPTY;
     private String vcard = StringUtils.EMPTY;
     private String ageInMonths = StringUtils.EMPTY;
+    private String childSNo = StringUtils.EMPTY;
 
     public void populateMeta() {
 
@@ -106,13 +107,13 @@ public class Children extends BaseObservable {
         this.uuid = uuid;
     }
 
-    public String getCluster() {
+    /*public String getCluster() {
         return cluster;
     }
 
     public void setCluster(String cluster) {
         this.cluster = cluster;
-    }
+    }*/
 
     public String getEnumCode() {
         return enumCode;
@@ -138,7 +139,7 @@ public class Children extends BaseObservable {
         this.sysDate = sysDate;
     }
 
-    public String getTabNo() {
+    /*public String getTabNo() {
         return tabNo;
     }
 
@@ -152,7 +153,7 @@ public class Children extends BaseObservable {
 
     public void setGeoArea(String geoArea) {
         this.geoArea = geoArea;
-    }
+    }*/
 
     public String getDeviceId() {
         return deviceId;
@@ -162,13 +163,13 @@ public class Children extends BaseObservable {
         this.deviceId = deviceId;
     }
 
-    public String getDeviceTag() {
+    /*public String getDeviceTag() {
         return deviceTag;
     }
 
     public void setDeviceTag(String deviceTag) {
         this.deviceTag = deviceTag;
-    }
+    }*/
 
     public String getAppver() {
         return appver;
@@ -178,7 +179,7 @@ public class Children extends BaseObservable {
         this.appver = appver;
     }
 
-    public String getEndTime() {
+    /*public String getEndTime() {
         return endTime;
     }
 
@@ -200,7 +201,7 @@ public class Children extends BaseObservable {
 
     public void setiStatus(String iStatus) {
         this.iStatus = iStatus;
-    }
+    }*/
 
     public String getiStatus96x() {
         return iStatus96x;
@@ -226,7 +227,7 @@ public class Children extends BaseObservable {
         this.syncDate = syncDate;
     }
 
-    public String getGpsLat() {
+    /*public String getGpsLat() {
         return gpsLat;
     }
 
@@ -256,7 +257,7 @@ public class Children extends BaseObservable {
 
     public void setGpsAcc(String gpsAcc) {
         this.gpsAcc = gpsAcc;
-    }
+    }*/
 
     public String getHh01() {
         return hh01;
@@ -312,27 +313,35 @@ public class Children extends BaseObservable {
         notifyPropertyChanged(BR.ageInMonths);
     }
 
+    public String getChildSNo() {
+        return childSNo;
+    }
+
+    public void setChildSNo(String childSNo) {
+        this.childSNo = childSNo;
+    }
+
     public Children Hydrate(Cursor cursor) throws JSONException {
         this.id = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_ID));
         this.uid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_UID));
         this.uuid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_UUID));
         this.userName = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_USERNAME));
-        this.cluster = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_CLUSTER));
+//        this.cluster = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_CLUSTER));
         this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_SYSDATE));
-        this.tabNo = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_TAB_NO));
-        this.geoArea = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GEOAREA));
+//        this.tabNo = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_TAB_NO));
+//        this.geoArea = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GEOAREA));
         this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_DEVICEID));
-        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_DEVICETAGID));
+//        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_DEVICETAGID));
         this.appver = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_APPVERSION));
-        this.iStatus = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_ISTATUS));
+//        this.iStatus = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_ISTATUS));
         this.synced = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_SYNCED));
         this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_SYNCED_DATE));
-        this.endTime = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_END_TIME));
-        this.startTime = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_START_TIME));
-        this.gpsLat = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSLAT));
-        this.gpsLng = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSLNG));
-        this.gpsDT = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSDATE));
-        this.gpsAcc = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSACC));
+//        this.endTime = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_END_TIME));
+//        this.startTime = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_START_TIME));
+//        this.gpsLat = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSLAT));
+//        this.gpsLng = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSLNG));
+//        this.gpsDT = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSDATE));
+//        this.gpsAcc = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_GPSACC));
         sVHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildrenTable.COLUMN_SV)));
 
         return this;
@@ -349,6 +358,7 @@ public class Children extends BaseObservable {
             this.childName = json.getString("childName");
             this.vcard = json.getString("vcard");
             this.ageInMonths = json.getString("ageInMonths");
+            this.childSNo = json.getString("childSNo");
         }
     }
 
@@ -361,7 +371,8 @@ public class Children extends BaseObservable {
                 .put("hh05", hh05)
                 .put("childName", childName)
                 .put("vcard", vcard)
-                .put("ageInMonths", ageInMonths);
+                .put("ageInMonths", ageInMonths)
+                .put("childSNo", childSNo);
 
         return json.toString();
     }
@@ -374,23 +385,23 @@ public class Children extends BaseObservable {
         json.put(TableContracts.ChildrenTable.COLUMN_UID, this.uid);
         json.put(TableContracts.ChildrenTable.COLUMN_UUID, this.uuid);
         json.put(TableContracts.ChildrenTable.COLUMN_USERNAME, this.userName);
-        json.put(TableContracts.ChildrenTable.COLUMN_CLUSTER, this.cluster);
+//        json.put(TableContracts.ChildrenTable.COLUMN_CLUSTER, this.cluster);
         json.put(TableContracts.ChildrenTable.COLUMN_SYSDATE, this.sysDate);
-        json.put(TableContracts.ChildrenTable.COLUMN_TAB_NO, this.tabNo);
-        json.put(TableContracts.ChildrenTable.COLUMN_GEOAREA, this.geoArea);
+//        json.put(TableContracts.ChildrenTable.COLUMN_TAB_NO, this.tabNo);
+//        json.put(TableContracts.ChildrenTable.COLUMN_GEOAREA, this.geoArea);
         json.put(TableContracts.ChildrenTable.COLUMN_DEVICEID, this.deviceId);
-        json.put(TableContracts.ChildrenTable.COLUMN_DEVICETAGID, this.deviceTag);
-        json.put(TableContracts.ChildrenTable.COLUMN_ISTATUS, this.iStatus);
+//        json.put(TableContracts.ChildrenTable.COLUMN_DEVICETAGID, this.deviceTag);
+//        json.put(TableContracts.ChildrenTable.COLUMN_ISTATUS, this.iStatus);
         json.put(TableContracts.ChildrenTable.COLUMN_APPVERSION, this.appver);
         json.put(TableContracts.ChildrenTable.COLUMN_SYNCED, this.synced);
         json.put(TableContracts.ChildrenTable.COLUMN_SYNCED_DATE, this.syncDate);
-        json.put(TableContracts.ChildrenTable.COLUMN_GPSLAT, this.gpsLat);
-        json.put(TableContracts.ChildrenTable.COLUMN_GPSLNG, this.gpsLng);
-        json.put(TableContracts.ChildrenTable.COLUMN_GPSDATE, this.gpsDT);
-        json.put(TableContracts.ChildrenTable.COLUMN_GPSACC, this.gpsAcc);
+//        json.put(TableContracts.ChildrenTable.COLUMN_GPSLAT, this.gpsLat);
+//        json.put(TableContracts.ChildrenTable.COLUMN_GPSLNG, this.gpsLng);
+//        json.put(TableContracts.ChildrenTable.COLUMN_GPSDATE, this.gpsDT);
+//        json.put(TableContracts.ChildrenTable.COLUMN_GPSACC, this.gpsAcc);
         json.put(TableContracts.ChildrenTable.COLUMN_SV, new JSONObject(sVtoString()));
-        json.put(TableContracts.ChildrenTable.COLUMN_END_TIME, this.endTime);
-        json.put(TableContracts.ChildrenTable.COLUMN_START_TIME, this.startTime);
+//        json.put(TableContracts.ChildrenTable.COLUMN_END_TIME, this.endTime);
+//        json.put(TableContracts.ChildrenTable.COLUMN_START_TIME, this.startTime);
 
         return json;
 

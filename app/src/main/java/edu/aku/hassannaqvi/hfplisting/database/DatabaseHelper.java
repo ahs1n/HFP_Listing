@@ -154,20 +154,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TableContracts.ChildrenTable.COLUMN_UID, vc.getUid());
         values.put(TableContracts.ChildrenTable.COLUMN_UUID, vc.getUuid());
         values.put(TableContracts.ChildrenTable.COLUMN_USERNAME, vc.getUserName());
-        values.put(TableContracts.ChildrenTable.COLUMN_CLUSTER, vc.getCluster());
+//        values.put(TableContracts.ChildrenTable.COLUMN_CLUSTER, vc.getCluster());
         values.put(TableContracts.ChildrenTable.COLUMN_SYSDATE, vc.getSysDate());
-        values.put(TableContracts.ChildrenTable.COLUMN_TAB_NO, vc.getTabNo());
-        values.put(TableContracts.ChildrenTable.COLUMN_GEOAREA, vc.getGeoArea());
-        values.put(TableContracts.ChildrenTable.COLUMN_ISTATUS, vc.getiStatus());
-        values.put(TableContracts.ChildrenTable.COLUMN_DEVICETAGID, vc.getDeviceTag());
-        values.put(TableContracts.ChildrenTable.COLUMN_DEVICEID, vc.getDeviceId());
+//        values.put(TableContracts.ChildrenTable.COLUMN_TAB_NO, vc.getTabNo());
+//        values.put(TableContracts.ChildrenTable.COLUMN_GEOAREA, vc.getGeoArea());
+//        values.put(TableContracts.ChildrenTable.COLUMN_ISTATUS, vc.getiStatus());
+//        values.put(TableContracts.ChildrenTable.COLUMN_DEVICETAGID, vc.getDeviceTag());
+//        values.put(TableContracts.ChildrenTable.COLUMN_DEVICEID, vc.getDeviceId());
         values.put(TableContracts.ChildrenTable.COLUMN_APPVERSION, vc.getAppver());
-        values.put(TableContracts.ChildrenTable.COLUMN_START_TIME, vc.getStartTime());
-        values.put(TableContracts.ChildrenTable.COLUMN_END_TIME, vc.getEndTime());
-        values.put(TableContracts.ChildrenTable.COLUMN_GPSLAT, vc.getGpsLat());
-        values.put(TableContracts.ChildrenTable.COLUMN_GPSLNG, vc.getGpsLng());
-        values.put(TableContracts.ChildrenTable.COLUMN_GPSDATE, vc.getGpsDT());
-        values.put(TableContracts.ChildrenTable.COLUMN_GPSACC, vc.getGpsAcc());
+//        values.put(TableContracts.ChildrenTable.COLUMN_START_TIME, vc.getStartTime());
+//        values.put(TableContracts.ChildrenTable.COLUMN_END_TIME, vc.getEndTime());
+//        values.put(TableContracts.ChildrenTable.COLUMN_GPSLAT, vc.getGpsLat());
+//        values.put(TableContracts.ChildrenTable.COLUMN_GPSLNG, vc.getGpsLng());
+//        values.put(TableContracts.ChildrenTable.COLUMN_GPSDATE, vc.getGpsDT());
+//        values.put(TableContracts.ChildrenTable.COLUMN_GPSACC, vc.getGpsAcc());
 
         // Put all JSON as xxtoString()
         values.put(TableContracts.ChildrenTable.COLUMN_SV, vc.sVtoString());

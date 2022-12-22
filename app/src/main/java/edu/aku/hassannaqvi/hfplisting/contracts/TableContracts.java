@@ -124,22 +124,22 @@ public class TableContracts {
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_UUID = "_uuid";
         public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_CLUSTER = "cluster";
+//        public static final String COLUMN_CLUSTER = "cluster";
         public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_GPSLAT = "xlt";
-        public static final String COLUMN_GPSLNG = "xlg";
-        public static final String COLUMN_GPSDATE = "xdt";
-        public static final String COLUMN_GPSACC = "xac";
-        public static final String COLUMN_TAB_NO = "tabNo";
-        public static final String COLUMN_GEOAREA = "geoArea";
+//        public static final String COLUMN_GPSLAT = "xlt";
+//        public static final String COLUMN_GPSLNG = "xlg";
+//        public static final String COLUMN_GPSDATE = "xdt";
+//        public static final String COLUMN_GPSACC = "xac";
+//        public static final String COLUMN_TAB_NO = "tabNo";
+//        public static final String COLUMN_GEOAREA = "geoArea";
         public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
+//        public static final String COLUMN_DEVICETAGID = "devicetagid";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
         public static final String COLUMN_APPVERSION = "appversion";
-        public static final String COLUMN_ISTATUS = "istatus";
-        public static final String COLUMN_END_TIME = "end_time";
-        public static final String COLUMN_START_TIME = "start_time";
+//        public static final String COLUMN_ISTATUS = "istatus";
+//        public static final String COLUMN_END_TIME = "end_time";
+//        public static final String COLUMN_START_TIME = "start_time";
         public static final String COLUMN_SV = "sV";
     }
 }

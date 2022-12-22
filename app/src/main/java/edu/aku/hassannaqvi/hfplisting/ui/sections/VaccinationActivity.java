@@ -73,7 +73,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
     }
 
-    public void btnEnd(View view) {
+    /*public void btnEnd(View view) {
         bi.childName.setText("Deleted");
         bi.vcard.setText("Deleted");
         bi.ageInMonths.setText("");
@@ -97,15 +97,17 @@ public class VaccinationActivity extends AppCompatActivity {
             startActivity(i);
 
         } else Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
-    private boolean insertRecord(){
+    private boolean insertRecord() {
         long rowId = 0;
         child.populateMeta();
         child.setUuid(listings.getUid());
         child.setHh01(listings.getHh01());
         child.setHh04(listings.getHh04());
         child.setHh05(listings.getHh05());
+        child.setChildSNo(Integer.toString(childNumber));
+
         try {
             rowId = db.addChild(child);
 

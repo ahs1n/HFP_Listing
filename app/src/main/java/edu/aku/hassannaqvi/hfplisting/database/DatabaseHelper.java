@@ -160,7 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        values.put(TableContracts.ChildrenTable.COLUMN_GEOAREA, vc.getGeoArea());
 //        values.put(TableContracts.ChildrenTable.COLUMN_ISTATUS, vc.getiStatus());
 //        values.put(TableContracts.ChildrenTable.COLUMN_DEVICETAGID, vc.getDeviceTag());
-//        values.put(TableContracts.ChildrenTable.COLUMN_DEVICEID, vc.getDeviceId());
+        values.put(TableContracts.ChildrenTable.COLUMN_DEVICEID, vc.getDeviceId());
         values.put(TableContracts.ChildrenTable.COLUMN_APPVERSION, vc.getAppver());
 //        values.put(TableContracts.ChildrenTable.COLUMN_START_TIME, vc.getStartTime());
 //        values.put(TableContracts.ChildrenTable.COLUMN_END_TIME, vc.getEndTime());

@@ -67,10 +67,10 @@ public class Children extends BaseObservable {
         setAppver(MainApp.appInfo.getAppVersion());
         setProjectName(PROJECT_NAME);
 
-        setUserName(MainApp.user.getUserName());
-        setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
-        setDeviceId(MainApp.deviceid);
-        setAppver(MainApp.versionName + "." + MainApp.versionCode);
+//        setUserName(MainApp.user.getUserName());
+//        setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+//        setDeviceId(MainApp.deviceid);
+//        setAppver(MainApp.versionName + "." + MainApp.versionCode);
         setEnumCode(MainApp.user.getDist_id());
 
     }

@@ -768,26 +768,26 @@ public class Listings extends BaseObservable {
         if (string != null) {
             JSONObject json = null;
             json = new JSONObject(string);
-            this.hh02a = json.getString("hh02a");
-            this.hh02b = json.getString("hh02b");
-            this.hh05 = json.getString("hh05");
-            this.hh11 = json.getString("hh11");
-            this.hh12 = json.getString("hh12");
-            this.hh12a = json.getString("hh12a");
-            this.hh12b = json.getString("hh12b");
-            this.hh12c = json.getString("hh12c");
-            this.hh12d = json.getString("hh12d");
-            this.hh12e = json.getString("hh12e");
+            this.hh02a = json.has("hh02a") ? json.getString("hh02a") : "";
+            this.hh02b = json.has("hh02b") ? json.getString("hh02b") : "";
+            this.hh05 = json.has("hh05") ? json.getString("hh05") : "";
+            this.hh11 = json.has("hh11") ? json.getString("hh11") : "";
+            this.hh12 = json.has("hh12") ? json.getString("hh12") : "";
+            this.hh12a = json.has("hh12a") ? json.getString("hh12a") : "";
+            this.hh12b = json.has("hh12b") ? json.getString("hh12b") : "";
+            this.hh12c = json.has("hh12c") ? json.getString("hh12c") : "";
+            this.hh12d = json.has("hh12d") ? json.getString("hh12d") : "";
+            this.hh12e = json.has("hh12e") ? json.getString("hh12e") : "";
             this.hh12f1 = json.has("hh12f1") ? json.getString("hh12f1") : "";
             this.hh12f2 = json.has("hh12f2") ? json.getString("hh12f2") : "";
             this.hh12f3 = json.has("hh12f3") ? json.getString("hh12f3") : "";
-            this.hh13 = json.getString("hh13");
-            this.hh13a = json.getString("hh13a");
-            this.hh14 = json.getString("hh14");
-            this.hh14a = json.getString("hh14a");
-            this.hh15 = json.getString("hh15");
-            this.hh16 = json.getString("hh16");
-            this.hh17 = json.getString("hh17");
+            this.hh13 = json.has("hh13") ? json.getString("hh13") : "";
+            this.hh13a = json.has("hh13a") ? json.getString("hh13a") : "";
+            this.hh14 = json.has("hh14") ? json.getString("hh14") : "";
+            this.hh14a = json.has("hh14a") ? json.getString("hh14a") : "";
+            this.hh15 = json.has("hh15") ? json.getString("hh15") : "";
+            this.hh16 = json.has("hh16") ? json.getString("hh16") : "";
+            this.hh17 = json.has("hh17") ? json.getString("hh17") : "";
 
 
         }

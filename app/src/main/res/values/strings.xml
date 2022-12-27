@@ -179,6 +179,19 @@
     <string name="hh19">تولیدی عمر کی خاتون (ماں) کے (10 سال سے لیکر 18 سال سے کم عمر) بچوں کی تعداد؟</string>
 
     <string name="hh16new">عام طور پر بچوں کو کہاں سے حفاظتی ٹیکے لگواتے ہیں؟</string>
+    <string name="hh1601">سرکاری مرکز صحت</string>
+    <string name="hh1602">پرائیویٹ مرکز صحت</string>
+    <string name="hh1603">سرکاری آؤٹ ریچ سروس</string>
+    <string name="hh1604">بچوں کو حفاٖظتی ٹیکے نہیں لگواتے</string>
+    <string name="hh17new">مشاہدہ کریں کہ دروازے پر ای پی آئی یا پی آئی کی جانب سے ڈور مارکنگ موجود ہے</string>
+    <string name="hh1701">ہاں</string>
+    <string name="hh1702">نہیں</string>
+    <string name="pick_email_provider">Pick an email provider</string>
+    <string name="file_not_found">File not found</string>
+    <string name="vc01">بچے کا نام</string>
+    <string name="vc02">ویکسینیشن کارڈ نمبر</string>
+    <string name="vc03">عمر</string>
+    <string name="in_months">مہینوں میں</string>
 
     <string name='Q_hh01'>hh01</string>
     <string name='Q_hh02'>hh02</string>
@@ -210,6 +223,9 @@
     <string name='Q_hh18'>hh18</string>
     <string name='Q_hh19'>hh19</string>
     <string name='Q_listitle'>listitle</string>
+    <string name="Q_vc01">VC01</string>
+    <string name="Q_vc02">VC02</string>
+    <string name="Q_vc03">VC03</string>
 
     <string name='Q_hh02a'>hh02a</string>
     <string name='Q_hh02b'>hh02b</string>
@@ -245,20 +261,4 @@
     <string name="invalid_response" translatable="false"> Invalid Response </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hh1601">سرکاری مرکز صحت</string>
-    <string name="hh1602">پرائیویٹ مرکز صحت</string>
-    <string name="hh1603">سرکاری آؤٹ ریچ سروس</string>
-    <string name="hh1604">بچوں کو حفاٖظتی ٹیکے نہیں لگواتے</string>
-    <string name="hh17new">مشاہدہ کریں کہ دروازے پر ای پی آئی یا پی آئی کی جانب سے ڈور مارکنگ موجود ہے</string>
-    <string name="hh1701">ہاں</string>
-    <string name="hh1702">نہیں</string>
-    <string name="pick_email_provider">Pick an email provider</string>
-    <string name="file_not_found">File not found</string>
-    <string name="Q_vc01">VC01</string>
-    <string name="vc01">بچے کا نام</string>
-    <string name="Q_vc02">VC02</string>
-    <string name="vc02">ویکسینیشن کارڈ نمبر</string>
-    <string name="Q_vc03">VC03</string>
-    <string name="vc03">عمر</string>
-    <string name="in_months">مہینوں میں</string>
 </resources>

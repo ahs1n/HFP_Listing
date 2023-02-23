@@ -1,17 +1,17 @@
 package edu.aku.hassannaqvi.hfplisting.ui.sections;
 
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.child;
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.childNumber;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.maxStructure;
-import static edu.aku.hassannaqvi.hfplisting.core.MainApp.childNumber;
-import static edu.aku.hassannaqvi.hfplisting.core.MainApp.child;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -136,5 +136,11 @@ public class VaccinationActivity extends AppCompatActivity {
 
     private boolean formValidation() {
         return Validator.emptyCheckingContainer(this, bi.ChildrenGroup);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

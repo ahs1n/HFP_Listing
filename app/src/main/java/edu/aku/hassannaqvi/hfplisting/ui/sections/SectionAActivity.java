@@ -262,4 +262,10 @@ public class SectionAActivity extends AppCompatActivity {
             bi.ebMsg.setText(null);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
 }

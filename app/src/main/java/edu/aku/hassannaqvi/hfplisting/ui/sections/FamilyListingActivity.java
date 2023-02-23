@@ -1,7 +1,7 @@
 package edu.aku.hassannaqvi.hfplisting.ui.sections;
 
-import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.childNumber;
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -237,5 +237,11 @@ public class FamilyListingActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Back Press Not Allowed", Toast.LENGTH_LONG).show();
       /*  finish();
         startActivity(new Intent(this, MainActivity.class));*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

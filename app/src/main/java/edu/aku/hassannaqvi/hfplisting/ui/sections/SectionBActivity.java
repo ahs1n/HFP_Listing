@@ -123,7 +123,7 @@ public class SectionBActivity extends AppCompatActivity {
         }
 */
 
-        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%04d", maxStructure));
+        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%s-%04d", MainApp.selectedTab, maxStructure));
 //        bi.hhid.setText("HFP-" + String.format("%04d", maxStructure));
         Toast.makeText(this, "Staring Structure", Toast.LENGTH_SHORT).show();
 

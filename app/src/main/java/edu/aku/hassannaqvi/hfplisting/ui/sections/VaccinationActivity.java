@@ -46,7 +46,7 @@ public class VaccinationActivity extends AppCompatActivity {
         setSupportActionBar(bi.toolbar);
         db = MainApp.appInfo.dbHelper;
 
-        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%04d", maxStructure) + "-" + (MainApp.hhid_char) + "\n" + String.format("Child - %02d", ++childNumber));
+        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%s-%04d", MainApp.selectedTab, maxStructure) + "-" + (MainApp.hhid_char) + "\n" + String.format("Child - %02d", ++childNumber));
     }
 
     public void btnContinue(View view) {

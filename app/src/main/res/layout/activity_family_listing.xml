@@ -1,6 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -53,7 +52,7 @@
                     android:background="@color/grayDark"
                     android:fontFamily="@font/allerta_stencil"
                     android:gravity="center"
-                    android:text="901010101-0234-001"
+                    android:text="901010101\nA-0234-X"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />

@@ -272,8 +272,7 @@
                     <!-- hh03  Radio   -->
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVhh03"
-                        style="@style/cardView"
-                        android:visibility="gone">
+                        style="@style/cardView">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -312,10 +311,7 @@
                                     android:layout_weight="1"
                                     android:checked="@{listings.hh03.equals(`1`)}"
                                     android:onClick="@{()->listings.setHh03(`1`)}"
-                                    android:text="@string/hh031"
-
-
-                                    />
+                                    android:text="@string/hh031" />
 
                                 <RadioButton
                                     android:id="@+id/hh032"
@@ -324,9 +320,7 @@
                                     android:layout_weight="1"
                                     android:checked="@{listings.hh03.equals(`2`)}"
                                     android:onClick="@{()->listings.setHh03(`2`)}"
-                                    android:text="@string/hh032"
-
-                                    />
+                                    android:text="@string/hh032" />
                             </RadioGroup>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>

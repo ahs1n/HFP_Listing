@@ -72,7 +72,7 @@ public class FamilyListingActivity extends AppCompatActivity {
         }*/
 
 //        bi.hhid.setText("HFP-" + MainApp.listings.getHh01() + "\n" + MainApp.selectedTab + "-" + String.format("%04d", MainApp.maxStructure) + "-" + String.format("%03d", MainApp.hhid));
-        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%03d", MainApp.maxStructure) + "-" + (MainApp.hhid_char));
+        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%s-%03d", MainApp.selectedTab, MainApp.maxStructure) + "-" + (MainApp.hhid_char));
         Toast.makeText(this, "Staring Household", Toast.LENGTH_SHORT).show();
 
         bi.hh1301.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

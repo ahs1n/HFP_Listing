@@ -76,8 +76,8 @@ public class SectionBActivity extends AppCompatActivity {
             MainApp.clusterInfo = sharedPref.getString(selectedAreaCode, "0|0").split("\\|");
 
         int structure = Integer.parseInt(MainApp.clusterInfo[0]);
-        if (selectedAreaCode.equals("1901") && structure < 360) {
-            structure = 360;
+        if (selectedAreaCode.equals("1204") && structure < 479) {
+            structure = 479;
             editor.putString(selectedAreaCode, String.valueOf(structure));
             editor.apply();
         }

@@ -67,10 +67,6 @@ public class FamilyListingActivity extends AppCompatActivity {
         listings.setHh17("");
         bi.btnEnd.setVisibility(MainApp.hhid == 1 ? View.GONE : View.VISIBLE);
 
-        /*if (MainApp.hhid >= Integer.parseInt(MainApp.listings.getHh10())) {
-            bi.fldGrpCVhh15.setVisibility(View.VISIBLE);
-        }*/
-
 //        bi.hhid.setText("HFP-" + MainApp.listings.getHh01() + "\n" + MainApp.selectedTab + "-" + String.format("%04d", MainApp.maxStructure) + "-" + String.format("%03d", MainApp.hhid));
         bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%s-%03d", MainApp.selectedTab, MainApp.maxStructure) + "-" + (MainApp.hhid_char));
         Toast.makeText(this, "Staring Household", Toast.LENGTH_SHORT).show();
@@ -83,7 +79,6 @@ public class FamilyListingActivity extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     bi.hh13a.setMaxvalue(0f);
                 }
-
             }
         });
 
@@ -151,25 +146,16 @@ public class FamilyListingActivity extends AppCompatActivity {
 
     public void btnContinue(View view) {
         if (!formValidation()) return;
-        //saveDraft();
         if (MainApp.hhid == 1 ? updateDB() : insertRecord()) {
-//        if (MainApp.hhid == 1 ? insertRecord() : updateDB()) {
             finish();
             if (Integer.parseInt(listings.getHh13()) == 1) {
-//                if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1"))
-//                    MainApp.hhid_char = String.valueOf((char) MainApp.hhid_char.charAt(0));
                 startActivity(new Intent(this, VaccinationActivity.class));
                 childNumber = 0;
             } else if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
-                //   Toast.makeText(this, "Staring Family", Toast.LENGTH_SHORT).show();
-
                 MainApp.hhid_char = String.valueOf((char) (MainApp.hhid_char.charAt(0) + 1));
                 startActivity(new Intent(this, FamilyListingActivity.class));
-
             } else {
-                //     Toast.makeText(this, "Staring Household", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, SectionBActivity.class));
-
             }
         } else Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
     }
@@ -177,20 +163,15 @@ public class FamilyListingActivity extends AppCompatActivity {
 
     public void btnEnd(View view) {
         bi.hh11.setText("Deleted");
-        //bi.hh14.setText("Deleted");
         bi.hh14a.setText("Deleted");
         bi.hh13.clearCheck();
         bi.hh13a.setText("00");
         bi.hh16.clearCheck();
         bi.hh17.clearCheck();
 
-        //saveDraft();
         if (insertRecord()) {
             finish();
-
-            //     Toast.makeText(this, "Staring Household", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, SectionBActivity.class));
-
         } else Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
     }
 
@@ -199,21 +180,6 @@ public class FamilyListingActivity extends AppCompatActivity {
         if (!Validator.emptyCheckingContainer(this, bi.GrpName)) return false;
 
         if (!bi.hh12.getText().toString().equals("")) {
-          /*  if (Integer.parseInt(bi.hh12a.getText().toString()) > Integer.parseInt(bi.hh12.getText().toString())) {
-                Validator.emptyCustomTextBox(this, bi.hh12a, "Total male cannot be more than Total Members");
-                return false;
-            }
-
-            if (Integer.parseInt(bi.hh12b.getText().toString()) > Integer.parseInt(bi.hh12.getText().toString())) {
-                Validator.emptyCustomTextBox(this, bi.hh12b, "Total female cannot be more than Total Members");
-                return false;
-            }
-
-            if (Integer.parseInt(bi.hh12c.getText().toString()) > Integer.parseInt(bi.hh12.getText().toString())) {
-                Validator.emptyCustomTextBox(this, bi.hh12c, "Total maried women cannot be more than Total Members");
-                return false;
-            }*/
-
             if (Integer.parseInt(bi.hh12c.getText().toString()) > Integer.parseInt(bi.hh12b.getText().toString())) {
                 Validator.emptyCustomTextBox(this, bi.hh12c, "Total maried women cannot be more than Total Females");
                 return false;
@@ -235,8 +201,6 @@ public class FamilyListingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), "Back Press Not Allowed", Toast.LENGTH_LONG).show();
-      /*  finish();
-        startActivity(new Intent(this, MainActivity.class));*/
     }
 
     @Override

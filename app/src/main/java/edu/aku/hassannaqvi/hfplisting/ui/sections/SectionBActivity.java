@@ -113,18 +113,8 @@ public class SectionBActivity extends AppCompatActivity {
         listings.setHh16("");
         listings.setHh17("");
 
-/*
-
-        if (!listings.getHh02e().isEmpty()){
-            if (listings.getHh02e().equals("1"))
-                appendingChar = "A";
-            else if (listings.getHh02e().equals("2"))
-                appendingChar = "B";
-        }
-*/
-
-        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%s-%04d", MainApp.selectedTab, maxStructure));
-//        bi.hhid.setText("HFP-" + String.format("%04d", maxStructure));
+        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" +
+                MainApp.selectedAreaCode + "\n" + String.format("%s-%04d", MainApp.selectedTab, maxStructure));
         Toast.makeText(this, "Staring Structure", Toast.LENGTH_SHORT).show();
 
     }
@@ -137,10 +127,10 @@ public class SectionBActivity extends AppCompatActivity {
             } else {
                 Clear.clearAllFields(bi.fldGrpCVhh09);
                 Clear.clearAllFields(bi.fldGrpCVhh10);
-
             }
 
-            if (bi.hh0701.isChecked() || bi.hh0712.isChecked() || bi.hh0713.isChecked() || bi.hh0714.isChecked() || bi.hh0715.isChecked() || bi.hh0716.isChecked() || bi.hh0717.isChecked()) {
+            if (bi.hh0701.isChecked() || bi.hh0712.isChecked() || bi.hh0713.isChecked() || bi.hh0714.isChecked() ||
+                    bi.hh0715.isChecked() || bi.hh0716.isChecked() || bi.hh0717.isChecked()) {
                 Clear.clearAllFields(bi.fldGrpCVhh08);
                 Clear.clearAllFields(bi.fldGrpCVhh09);
                 Clear.clearAllFields(bi.fldGrpCVhh10);
@@ -155,9 +145,8 @@ public class SectionBActivity extends AppCompatActivity {
             }
 
         });
-        bi.hh0902.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVhh10));
 
-        //   bi.hh09.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVhh10));
+        bi.hh0902.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVhh10));
     }
 
 
@@ -187,7 +176,6 @@ public class SectionBActivity extends AppCompatActivity {
             Toast.makeText(this, "Updating Database… ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
-
         return false;
     }
 
@@ -232,52 +220,6 @@ public class SectionBActivity extends AppCompatActivity {
     }
 
 
-    /*private void saveDraft() {
-        // listings = new Listings();
-
-        //listings.setSysDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
-        //listings.setUserName(MainApp.user.getUserName());
-        //listings.setDeviceId(MainApp.appInfo.getDeviceID());
-        //listings.setDeviceTag(MainApp.appInfo.getTagName());
-        //listings.setAppver(MainApp.appInfo.getAppVersion());
-        //listings.setStartTime(st);
-        //listings.setEndTime(new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
-
-        listings.setHh07(bi.hh0701.isChecked() ? "1"
-                : bi.hh0712.isChecked() ? "12"
-                : bi.hh0713.isChecked() ? "13"
-                : bi.hh0714.isChecked() ? "14"
-                : bi.hh0715.isChecked() ? "15"
-                : bi.hh0716.isChecked() ? "16"
-                : bi.hh0717.isChecked() ? "96"
-                : bi.hh0718.isChecked() ? "18"
-                : bi.hh0719.isChecked() ? "19"
-                : "-1");
-
-        listings.setHh0717x(bi.hh0717x.getText().toString());
-        //listings.setHh08(bi.hh08.getText().toString());
-
-        listings.setHh09(bi.hh0901.isChecked() ? "1"
-                : bi.hh0902.isChecked() ? "2"
-                : "-1");
-
-//        listings.setHh08(bi.hh08a.isChecked() ? "1"
-//                : bi.hh08b.isChecked() ? "2"
-//                : "-1");
-        listings.setHh10(bi.hh0701.isChecked() && bi.hh0902.isChecked() ? "1" : bi.hh10.getText().toString());
-
-        listings.setHh20(String.valueOf(MainApp.maxStructure));
-
-        try {
-            listings.setsA(listings.sAtoString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "JSONException(SB): " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-    }*/
-
-
     public void btnEnd(View view) {
         finish();
         startActivity(new Intent(this, MainActivity.class));
@@ -291,8 +233,6 @@ public class SectionBActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), "Back Press Not Allowed", Toast.LENGTH_LONG).show();
-       /* finish();
-        startActivity(new Intent(this, MainActivity.class));*/
     }
 
     public void setGPS() {

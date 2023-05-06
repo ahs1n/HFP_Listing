@@ -1,9 +1,9 @@
 package edu.aku.hassannaqvi.hfplisting.ui.sections;
 
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.listings;
+import static edu.aku.hassannaqvi.hfplisting.core.MainApp.selectedArea;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.selectedCluster;
 import static edu.aku.hassannaqvi.hfplisting.core.MainApp.selectedTab;
-import static edu.aku.hassannaqvi.hfplisting.core.MainApp.sharedPref;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.validatorcrawler.aliazaz.Validator;
+
+import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class SectionAActivity extends AppCompatActivity {
         bi.setCallback(this);
         db = MainApp.appInfo.dbHelper;
         selectedCluster = new Cluster();
+        selectedArea = new Listings();
         listings = new Listings();
         bi.setListings(listings);
         st = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date().getTime());
@@ -164,14 +167,19 @@ public class SectionAActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 bi.openForm.setVisibility(View.GONE);
-                if (position == 0) return;
-                MainApp.selectedAreaName = areaNames.get(bi.hh01c.getSelectedItemPosition());
-                MainApp.selectedAreaCode = areaCodes.get(bi.hh01c.getSelectedItemPosition());
-                listings.setCluster(MainApp.selectedAreaCode);
-                listings.setHh01(MainApp.selectedAreaCode);
-                bi.openForm.setVisibility(View.VISIBLE);
-                bi.openForm.setEnabled(true);
-
+                bi.fldGrpCVhh03.setVisibility(View.GONE);
+                if (position == 0) {
+                    //bi.fldGrpCVhh03.setVisibility(View.GONE);
+                } else {
+                    MainApp.selectedAreaName = areaNames.get(bi.hh01c.getSelectedItemPosition());
+                    MainApp.selectedAreaCode = areaCodes.get(bi.hh01c.getSelectedItemPosition());
+                    listings.setAreaCode(MainApp.selectedAreaCode);
+                    listings.setCluster(MainApp.selectedAreaCode);
+                    listings.setHh01(MainApp.selectedAreaCode);
+                    bi.openForm.setVisibility(View.VISIBLE);
+                    bi.openForm.setEnabled(true);
+                    searchArea();
+                }
             }
 
             @Override
@@ -181,10 +189,55 @@ public class SectionAActivity extends AppCompatActivity {
         });
     }
 
+    public void searchArea() {
+        bi.hh03.clearCheck();
+        bi.fldGrpCVhh03.setVisibility(View.GONE);
+
+        try {
+            selectedArea = db.getArea(MainApp.selectedAreaCode);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (selectedArea != null) {
+            listings.setGeoArea(selectedArea.getGeoArea());
+            bi.fldGrpCVhh03.setVisibility(View.GONE);
+
+            /*MainApp.clusterInfo = sharedPref.getString(selectedArea.getAreaCode(), "0|0").split("\\|");
+            MainApp.maxStructure = Integer.parseInt(MainApp.clusterInfo[0]);
+
+            if (!MainApp.clusterInfo[0].equals("0")) {
+                if (MainApp.clusterInfo[1].equals("A")) {
+                    listings.setHh03("1");
+                    bi.fldGrpCVhh03.setVisibility(View.GONE);
+                } else if (MainApp.clusterInfo[1].equals("B")) {
+                    listings.setHh03("2");
+                    bi.fldGrpCVhh03.setVisibility(View.GONE);
+                }
+                selectedTab = listings.getTabNo();
+            } else {
+                bi.hh03.clearCheck();
+                listings.setHh03("");
+                bi.fldGrpCVhh03.setVisibility(View.VISIBLE);
+            }
+            MainApp.selectedTab = MainApp.clusterInfo[1];*/
+
+//            bi.ebMsg.setText("Existing structures: " + listings.getHh04());
+        } else {
+            bi.hh03.clearCheck();
+            listings.setHh03("");
+            bi.ebMsg.setText("");
+            bi.fldGrpCVhh03.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void btnContinue(View view) {
         if (!formValidation()) return;
 
-        selectedTab = listings.getTabNo();
+        if (bi.fldGrpCVhh03.getVisibility() == View.VISIBLE)
+            selectedTab = bi.hh031.isChecked() ? "A" : "B";
+        else
+            selectedTab = selectedArea.getTabNo();
+        listings.setTabNo(selectedTab);
         finish();
         startActivity(new Intent(this, SectionBActivity.class));
 
@@ -206,61 +259,6 @@ public class SectionAActivity extends AppCompatActivity {
         // Toast.makeText(getApplicationContext(), "Back Press Not Allowed", Toast.LENGTH_LONG).show();
         finish();
         //  startActivity(new Intent(this, MainActivity.class));
-    }
-
-    public void searchEB(View view) {
-        bi.hh02.setChecked(false);
-        bi.hh03.clearCheck();
-        bi.openForm.setEnabled(false);
-        bi.fldGrpCVhh02.setVisibility(View.GONE);
-        bi.fldGrpCVhh03.setVisibility(View.GONE);
-
-        Cluster testEb = new Cluster();
-        testEb.setEbcode("909090909");
-        testEb.setGeoarea("|Test District|Test Tehsil|Test City");
-
-        if (!bi.hh01.getText().toString().equals(testEb.getEbcode())) {
-            selectedCluster = db.getClusters(bi.hh01.getText().toString());
-
-            if (selectedCluster != null) {
-                listings.setGeoArea(selectedCluster.getGeoarea());
-                MainApp.clusterInfo = sharedPref.getString(selectedCluster.getEbcode(), "0|0").split("\\|");
-                MainApp.maxStructure = Integer.parseInt(MainApp.clusterInfo[0]);
-
-                String[] geoArea = selectedCluster.getGeoarea().split("\\|");
-
-                bi.fldGrpCVhh02.setVisibility(View.VISIBLE);
-
-                if (bi.hh02.isChecked())
-                    bi.openForm.setEnabled(true);
-
-                if (!MainApp.clusterInfo[0].equals("0")) {
-                    //bi.fldGrpCVhh02e.setVisibility(View.GONE);
-                    if (MainApp.clusterInfo[1].equals("A")) {
-                        //bi.hh031.setChecked(true);
-                        listings.setHh03("1");
-                        bi.fldGrpCVhh03.setVisibility(View.GONE);
-
-                    } else if (MainApp.clusterInfo[1].equals("B")) {
-                        //bi.hh032.setChecked(true);
-                        listings.setHh03("2");
-                        bi.fldGrpCVhh03.setVisibility(View.GONE);
-                    }
-                    selectedTab = listings.getTabNo();
-                } else {
-                    bi.hh03.clearCheck();
-                    listings.setHh03("");
-                    bi.fldGrpCVhh03.setVisibility(View.VISIBLE);
-                }
-                MainApp.selectedTab = MainApp.clusterInfo[1];
-                bi.ebMsg.setText("Existing structures: " + MainApp.maxStructure);
-            }
-        } else {
-            selectedCluster = testEb;
-            MainApp.maxStructure = 0;
-            MainApp.selectedTab = "";
-            bi.ebMsg.setText(null);
-        }
     }
 
     @Override

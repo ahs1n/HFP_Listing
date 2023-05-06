@@ -17,6 +17,7 @@ public class TableContracts {
         public static final String COLUMN_GPSLNG = "xlg";
         public static final String COLUMN_GPSDATE = "xdt";
         public static final String COLUMN_GPSACC = "xac";
+        public static final String COLUMN_AREA_CODE = "areaCode";
         public static final String COLUMN_TAB_NO = "tabNo";
         public static final String COLUMN_GEOAREA = "geoArea";
         public static final String COLUMN_SA = "sA";

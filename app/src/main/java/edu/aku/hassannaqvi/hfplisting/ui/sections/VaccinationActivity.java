@@ -46,7 +46,13 @@ public class VaccinationActivity extends AppCompatActivity {
         setSupportActionBar(bi.toolbar);
         db = MainApp.appInfo.dbHelper;
 
-        bi.hhid.setText(MainApp.selectedFacilityName + " | " + MainApp.selectedAreaName + "\n" + "HFP-" + MainApp.selectedAreaCode + "\n" + String.format("%s-%04d", MainApp.selectedTab, maxStructure) + "-" + (MainApp.hhid_char) + "\n" + String.format("Child - %02d", ++childNumber));
+        bi.hhid.setText(String.format("%s | %s\nHFP-%s\n%s-%s\n%s",
+                MainApp.selectedFacilityName,
+                MainApp.selectedAreaName,
+                MainApp.selectedAreaCode,
+                String.format("%s-%04d",
+                        MainApp.selectedTab, maxStructure),
+                MainApp.hhid_char, String.format("Child - %02d", ++childNumber)));
     }
 
     public void btnContinue(View view) {
@@ -59,7 +65,6 @@ public class VaccinationActivity extends AppCompatActivity {
             if (childNumber < Integer.parseInt(listings.getHh13a())) {
                 i = new Intent(this, VaccinationActivity.class);
             } else if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
-                //   Toast.makeText(this, "Staring Family", Toast.LENGTH_SHORT).show();
 
                 MainApp.hhid_char = String.valueOf((char) (MainApp.hhid_char.charAt(0) + 1));
                 i = new Intent(this, FamilyListingActivity.class);
@@ -72,32 +77,6 @@ public class VaccinationActivity extends AppCompatActivity {
         } else Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
 
     }
-
-    /*public void btnEnd(View view) {
-        bi.childName.setText("Deleted");
-        bi.vcard.setText("Deleted");
-        bi.ageInMonths.setText("");
-
-        //saveDraft();
-        if (insertRecord()) {
-            finish();
-            Intent i = null;
-            if (childNumber < Integer.parseInt(listings.getHh13a())) {
-                i = new Intent(this, VaccinationActivity.class);
-            } else if (MainApp.hhid < Integer.parseInt(MainApp.listings.getHh10()) || listings.getHh15().equals("1")) {
-                //   Toast.makeText(this, "Staring Family", Toast.LENGTH_SHORT).show();
-
-                MainApp.hhid_char = String.valueOf((char) (MainApp.hhid_char.charAt(0) + 1));
-                i = new Intent(this, FamilyListingActivity.class);
-
-            } else {
-                i = new Intent(this, SectionBActivity.class);
-            }
-
-            startActivity(i);
-
-        } else Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-    }*/
 
     private boolean insertRecord() {
         long rowId = 0;

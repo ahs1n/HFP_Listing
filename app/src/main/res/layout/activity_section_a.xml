@@ -67,50 +67,6 @@
                                 android:text="@string/clusteridentification_mainheading"
                                 android:visibility="gone" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/bottom"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-                                <TextView
-                                    style="@style/quesNum"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:text="@string/Q_hh01" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="@string/hh01" />
-
-                                <AutoCompleteTextView
-                                    android:id="@+id/hh01"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:hint="@string/hh01"
-                                    android:inputType="number"
-                                    android:text="@={listings.hh01}" />
-
-                                <Button
-                                    android:id="@+id/searchEB"
-                                    style="@style/button"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="56dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="@android:color/darker_gray"
-                                    android:drawableEnd="@drawable/search"
-                                    android:drawablePadding="4dp"
-                                    android:fontFamily="@font/roboto"
-                                    android:onClick="searchEB"
-                                    android:padding="8dp"
-                                    android:text="Search"
-                                    android:textColor="@color/colorPrimary" />
-                            </LinearLayout>
-
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -131,15 +87,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
                                     android:hint="@string/hh01a" />
-
-                                <!--                                <TextView-->
-                                <!--                                    android:id="@+id/hh01a"-->
-                                <!--                                    style="@style/textInput"-->
-                                <!--                                    android:layout_width="0dp"-->
-                                <!--                                    android:layout_height="wrap_content"-->
-                                <!--                                    android:layout_weight="2"-->
-                                <!--                                    android:fontFamily="@font/roboto"-->
-                                <!--                                    android:hint="@string/hh01a" />-->
                             </LinearLayout>
 
 
@@ -162,15 +109,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
                                     android:hint="@string/hh01b" />
-
-                                <!--                                <TextView-->
-                                <!--                                    android:id="@+id/hh01b"-->
-                                <!--                                    style="@style/textInput"-->
-                                <!--                                    android:layout_width="0dp"-->
-                                <!--                                    android:layout_height="wrap_content"-->
-                                <!--                                    android:layout_weight="2"-->
-                                <!--                                    android:fontFamily="@font/roboto"-->
-                                <!--                                    android:hint="@string/hh01b" />-->
                             </LinearLayout>
 
 
@@ -193,15 +131,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
                                     android:hint="@string/hh01c" />
-
-                                <!--                                <TextView-->
-                                <!--                                    android:id="@+id/hh01c"-->
-                                <!--                                    style="@style/textInput"-->
-                                <!--                                    android:layout_width="0dp"-->
-                                <!--                                    android:layout_height="wrap_content"-->
-                                <!--                                    android:layout_weight="2"-->
-                                <!--                                    android:fontFamily="@font/roboto"-->
-                                <!--                                    android:hint="@string/hh01c" />-->
                             </LinearLayout>
 
                             <TextView
@@ -222,57 +151,11 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/fldGrpCVhh02"
-                        style="@style/cardView"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/bottom"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/quesNum"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:text="@string/Q_hh02" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:text="@string/hh02" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/hh02check"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:tag="0">
-
-                                <CheckBox
-                                    android:id="@+id/hh02"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:checked="@{listings.hh02.equals(`1`)}"
-                                    android:onClick="@{()->listings.setHh02(listings.hh02.equals(`1`)?``:`1`)}"
-                                    android:text="@string/hh02" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
                     <!-- hh03  Radio   -->
                     <androidx.cardview.widget.CardView
                         android:id="@+id/fldGrpCVhh03"
-                        style="@style/cardView">
+                        style="@style/cardView"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -335,26 +218,6 @@
                         android:layout_weight="1"
                         android:gravity="bottom"
                         android:orientation="horizontal">
-
-                        <!--   <Button
-                               android:id="@+id/btn_End"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginStart="12dp"
-                               android:background="@color/redOverlay"
-                               android:onClick="btnEnd"
-                               android:text="Cancel"
-                               android:textColor="@color/white" />
-
-                           <Button
-                               android:id="@+id/btn_Continue"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginStart="12dp"
-                               android:background="@color/greenLight"
-                               android:onClick="btnContinue"
-                               android:text="Save"
-                               android:textColor="@color/white" />-->
 
                         <Button
                             android:id="@+id/openForm"

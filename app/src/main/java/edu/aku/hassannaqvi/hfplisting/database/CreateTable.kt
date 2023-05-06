@@ -29,6 +29,7 @@ object CreateTable {
             + ListingsTable.COLUMN_GPSLNG + " TEXT,"
             + ListingsTable.COLUMN_GPSDATE + " TEXT,"
             + ListingsTable.COLUMN_GPSACC + " TEXT,"
+            + ListingsTable.COLUMN_AREA_CODE + " TEXT,"
             + ListingsTable.COLUMN_SYNCED + " TEXT,"
             + ListingsTable.COLUMN_SYNCED_DATE + " TEXT,"
             + ListingsTable.COLUMN_APPVERSION + " TEXT,"
@@ -161,4 +162,6 @@ object CreateTable {
         ("ALTER TABLE " + ListingsTable.TABLE_NAME + " ADD " + ListingsTable.COLUMN_GPSDATE + " TEXT; ")
     const val SQL_ALTER_LISTING_GPS_ACC =
         ("ALTER TABLE " + ListingsTable.TABLE_NAME + " ADD " + ListingsTable.COLUMN_GPSACC + " TEXT; ")
+    const val SQL_ALTER_LISTING_AREA_CODE =
+        ("ALTER TABLE " + ListingsTable.TABLE_NAME + " ADD " + ListingsTable.COLUMN_AREA_CODE + " TEXT; ")
 }

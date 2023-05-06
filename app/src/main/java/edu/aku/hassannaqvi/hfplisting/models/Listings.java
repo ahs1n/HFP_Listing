@@ -50,6 +50,7 @@ public class Listings extends BaseObservable {
     private String gpsLng = StringUtils.EMPTY;
     private String gpsDT = StringUtils.EMPTY;
     private String gpsAcc = StringUtils.EMPTY;
+    private String areaCode = StringUtils.EMPTY;
 
     // SECTION VARIABLES
     private String sH1 = StringUtils.EMPTY;
@@ -174,7 +175,7 @@ public class Listings extends BaseObservable {
 
     public void setHh03(String hh03) {
         this.hh03 = hh03;
-        setTabNo(hh03.equals("1") ? "A" : hh03.equals("2") ? "B" : "0");
+//        setTabNo(hh03.equals("1") ? "A" : hh03.equals("2") ? "B" : "0");
         notifyPropertyChanged(BR.hh03);
     }
 
@@ -487,6 +488,14 @@ public class Listings extends BaseObservable {
         notifyPropertyChanged(BR.gpsAcc);
     }
 
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
+    }
+
     /*
         @Bindable
         public String getHh16() {
@@ -728,6 +737,7 @@ public class Listings extends BaseObservable {
         this.gpsLng = cursor.getString(cursor.getColumnIndexOrThrow(ListingsTable.COLUMN_GPSLNG));
         this.gpsDT = cursor.getString(cursor.getColumnIndexOrThrow(ListingsTable.COLUMN_GPSDATE));
         this.gpsAcc = cursor.getString(cursor.getColumnIndexOrThrow(ListingsTable.COLUMN_GPSACC));
+        this.areaCode = cursor.getString(cursor.getColumnIndexOrThrow(ListingsTable.COLUMN_AREA_CODE));
         sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(ListingsTable.COLUMN_SA)));
         sBHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ListingsTable.COLUMN_SB)));
         sCHydrate(cursor.getString(cursor.getColumnIndexOrThrow(ListingsTable.COLUMN_SC)));
@@ -868,6 +878,7 @@ public class Listings extends BaseObservable {
         json.put(ListingsTable.COLUMN_GPSLNG, this.gpsLng);
         json.put(ListingsTable.COLUMN_GPSDATE, this.gpsDT);
         json.put(ListingsTable.COLUMN_GPSACC, this.gpsAcc);
+        json.put(ListingsTable.COLUMN_AREA_CODE, this.areaCode);
         json.put(ListingsTable.COLUMN_SA, new JSONObject(sAtoString()));
         json.put(ListingsTable.COLUMN_SB, new JSONObject(sBtoString()));
         json.put(ListingsTable.COLUMN_SC, new JSONObject(sCtoString()));

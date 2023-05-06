@@ -115,6 +115,7 @@ public class MainApp extends Application {
     public static int pregCountComplete = 0;
     public static List<String> subjectNames;
     public static Cluster selectedCluster;
+    public static Listings selectedArea;
     public static Cluster cluster;
     public static int maxStructure;
     public static int childNumber;
